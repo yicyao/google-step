@@ -7,19 +7,24 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <div id="content">
-      <h1>Yichen's Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <img src="images/me.jpeg" alt="A picture of me!" width="250" height="250">
-      
-      <p>About me: 
-      <br> I am a student at Columbia University. 
-      <br> I love to go to concerts, listen to music, and run
-      </p>
+    <h2 class="full-width-bar"><div class = "header"> Yichen Yao</div></h2> 
 
+    <div class="row">
+      <div class="column">
+        <img src="images/me.jpeg"  width="250" height="250">
+      </div>
+
+      <div class="column">
+        <div class="about">Hi, I'm Yichen.</div>   
+        <div class="about">Originally from Urbana, IL, I am a rising junior at <a href="https://www.columbia.edu/">Columbia University</a> studying computer science. </div>
+        <div class="about">In my free time, I love to go to concerts, check out new restaurants, and run.</div>
+      </div>
+    </div>
+
+    </div>
       <p>Click here to get a random quote from The Office:</p>
       <button onclick="addRandomQuote()"> Quote </button>
-      <div id="quote-container"></div>
-    </div>
+    <div id="quote-container"></div>
+
   </body>
 </html>

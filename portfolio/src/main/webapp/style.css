@@ -1,9 +1,38 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+html, body {
+  overflow-x: hidden;
 }
 
-#greeting-container {
-  margin-top: 20px;
+.header{
+  color: white;
+  font-family: "Open Sans";
+  font-size: 60px;
+  text-align: center;
+}
+
+.about{
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 50%;
+  margin-top: 10%;
+}
+
+.column {
+    line-height: 200%;
+    margin-left: 10%;
+}
+
+img {
+  border-radius: 50%;
+}
+
+.full-width-bar {
+  margin: 0 -9999rem;
+  padding: 0.25rem 9999rem;
+  background: gray;
 }
