@@ -12,20 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random quote to the page.
- */
-function addRandomQuote() {
-  const quotes =
-      ['If I don\'t have some cake soon, I might die.', 
-      'Well well well well.. how the turntables have turned.', 
-      'There\’s a lot of beauty in ordinary things. Isn\’t that kind of the point?', 
-      'You miss 100% of the shots you don\'t take.',];
+var slideIndex = 2;
+showSlides(slideIndex);
 
-  // Pick a random greeting.
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-  // Add it to the page.
-  const quoteContainer = document.getElementById('quote-container');
-  quoteContainer.innerText = quote;
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
 }
