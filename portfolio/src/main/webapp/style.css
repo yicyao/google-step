@@ -2,6 +2,15 @@ html, body {
   overflow-x: hidden;
   height: 100vh;
   overflow: hidden;
+  font-family: "Open Sans";
+  word-break: break-word;
+  word-wrap: break-word;
+  padding-bottom: 5%;
+}
+
+.multiline
+{
+  white-space: pre-wrap;
 }
 
 /* Circle images*/
@@ -24,10 +33,21 @@ img {
   line-height: 90%;
 }
 
+.subtext {
+  color: gray;
+  font-family: "Open Sans";
+  font-size: 12px;
+  text-align: center;
+  margin-top: 5px;
+}
+
 /* About Portion */
 .about {
   white-space: pre-wrap;
   text-align: left;
+  word-wrap: break-word;
+  margin-bottom: 5px;
+  font-size: 15px;
 }
 
 /* Seperate row sections */
@@ -35,16 +55,15 @@ img {
   display: flex;
   flex-direction: row;
   margin: auto;
-  width: 80%;
+  width: 70%;
   margin-top: 5%;
   text-align: center;
 }
 
 /* Seperate column sections within rows*/
 .column {
-    line-height: 200%;
-    width: 50%;
-    padding: 10px;
+    line-height: 100%;
+    width: 50%;  
 }
 
 .full-width-bar {
@@ -57,7 +76,6 @@ img {
 .scroller {
   overflow: scroll;
   height: 100vh;
-  scroll-snap-type: mandatory;
   scroll-snap-points-y: repeat(100vh);
   scroll-snap-type: y mandatory;
 
@@ -65,8 +83,8 @@ img {
 
 .scroller section {
   margin-top: 5%;
-  scroll-snap-align: start;
-
+  scroll-snap-align: center;
+  margin-left: 1%;
 }
 
 /* Slideshow positioning*/
