@@ -127,17 +127,18 @@
         <!-- Slideshow Carousel-->
         <div class="slideshow-container">
             <div class ="mySlides">
-                <div class="row">
-                    <div class="column">
-                    <img src="images/me.jpeg"  width="250" height="250">
-                    </div>
 
-                    <div class="column">
+                <div class ="row">
+                    <div class="column" style="width: 100%" >
                         <div class = "subheader">HeatSeek</div>
                         <hr align="center" width="80%">
                         <div class="about">Hi, Iasdgghen.</div>   
-                    </div> 
+
+                  </div>
+                  
                 </div>
+                  
+                  
             </div>
             
             <div class ="mySlides">
@@ -164,7 +165,21 @@
                     <div class="column">
                         <div class = "subheader">HeatSeek</div>
                         <hr align="center" width="80%">
-                        <div class="about">Hi,sadfen.</div>   
+                      
+                      
+                      <div class = "miniSlides"><img src="images/heatseek.png"  width="150" height="150"> </div>
+                      <div class = "miniSlides"><img src="images/uni.png"  width="150" height="150"> </div>
+                      <div class = "miniSlides"><img src="images/columbia.png"  width="150" height="150"></div>
+                      <script> currentSlide(1) </script>
+                        <div class="about">Hi,sadfen.</div>  
+
+                              <!-- Dots -->
+                     <div style="text-align:center">
+                      <span class="dot" onclick="currentSlide(1)"></span>
+                      <span class="dot" onclick="currentSlide(2)"></span>
+                      <span class="dot" onclick="currentSlide(3)"></span>
+                    </div>
+                      
                     </div> 
                 </div>
             </div>
@@ -175,12 +190,7 @@
             </div>
        <br>
 
-        <!-- Dots -->
-       <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-      </div>
+
       <script> showSlides(1) </script>
       </section>
       

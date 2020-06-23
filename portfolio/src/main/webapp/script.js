@@ -15,21 +15,23 @@
 /* Creates Slideshow Carousel to go through my projects*/
 
 var slideIndex = 1;
-showSlides(slideIndex);
+showSlides("arrow", slideIndex);
 
 // Next/previous controls
 function plusSlides(n) {
-  showSlides(slideIndex += n);
+  showSlides("arrow", slideIndex += n);
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
-  showSlides(slideIndex = n);
+  showSlides("dots", slideIndex = n);
 }
 
-function showSlides(n) {
+function showSlides(type, n) {
   var i;
-  var slides = document.getElementsByClassName("mySlides");
+  if (type === "dots") { var slides = document.getElementsByClassName("miniSlides");}
+  else {var slides = document.getElementsByClassName("mySlides");}
+  
   var dots = document.getElementsByClassName("dot");
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
