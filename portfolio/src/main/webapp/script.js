@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var slideIndex = 2;
-showSlides(slideIndex);
+/* Creates Slideshow Carousel to go through my projects*/
+
+var slideIndex = 1;
+showSlides(slideIndex += n);
 
 // Next/previous controls
 function plusSlides(n) {
@@ -29,6 +31,7 @@ function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("dot");
+
   if (n > slides.length) {slideIndex = 1}
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {

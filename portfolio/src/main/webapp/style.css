@@ -1,19 +1,22 @@
 html, body {
   overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
+/* Circle images*/
 img {
   border-radius: 50%;
 }
 
-.header{
+.header {
   color: gray;
   font-family: "Open Sans";
   font-size: 60px;
   text-align: center;
 }
 
-.subheader{
+.subheader {
   color: gray;
   font-family: "Open Sans";
   font-size: 20px;
@@ -21,11 +24,13 @@ img {
   line-height: 90%;
 }
 
-.about{
+/* About Portion */
+.about {
   white-space: pre-wrap;
   text-align: left;
 }
 
+/* Seperate row sections */
 .row {
   display: flex;
   flex-direction: row;
@@ -35,6 +40,7 @@ img {
   text-align: center;
 }
 
+/* Seperate column sections within rows*/
 .column {
     line-height: 200%;
     width: 50%;
@@ -47,23 +53,30 @@ img {
   background: gray;
 }
 
+/* Snap scroll*/
 .scroller {
-  height: 60%;
-  overflow-y: scroll;
+  overflow: scroll;
+  height: 100vh;
+  scroll-snap-type: mandatory;
+  scroll-snap-points-y: repeat(100vh);
   scroll-snap-type: y mandatory;
+
 }
 
 .scroller section {
   margin-top: 5%;
   scroll-snap-align: start;
+
 }
 
+/* Slideshow positioning*/
 .slideshow-container {
   max-width: 1000px;
   position: relative;
   margin: auto;
 }
 
+/* Slideshow arrows*/
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -79,12 +92,13 @@ img {
   user-select: none;
 }
 
-/* Position the "next button" to the right */
+/* Slideshow: Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
+/* Slideshow three dots*/
 .dot {
   cursor: pointer;
   height: 15px;
