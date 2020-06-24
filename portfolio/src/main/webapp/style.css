@@ -20,14 +20,12 @@ img {
 
 .header {
   color: gray;
-  font-family: "Open Sans";
   font-size: 60px;
   text-align: center;
 }
 
 .subheader {
   color: gray;
-  font-family: "Open Sans";
   font-size: 20px;
   text-align: center;
   line-height: 90%;
@@ -35,7 +33,6 @@ img {
 
 .subtext {
   color: gray;
-  font-family: "Open Sans";
   font-size: 12px;
   text-align: center;
   margin-top: 5px;
