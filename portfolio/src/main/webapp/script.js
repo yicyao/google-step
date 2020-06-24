@@ -19,6 +19,7 @@
 */
 
 
+
 // Navigate to next slide
 function plusSlides(slideNum) {
   showSlides("arrow", slideIndex += slideNum);
@@ -27,6 +28,7 @@ function plusSlides(slideNum) {
 
 // Navigate to slide indicated by slideNum
 function currentSlide(slideNum) {
+
   showSlides("dots", slideIndex = slideNum);
 }
 
@@ -51,6 +53,7 @@ function showSlides(type, slideNum) {
   for (let i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
+
   dots[slideIndex-1].className += " active";
 
   for (let i = 0; i < slides.length; i++) {
