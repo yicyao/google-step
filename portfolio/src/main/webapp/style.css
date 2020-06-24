@@ -52,9 +52,9 @@ img {
   display: flex;
   flex-direction: row;
   margin: auto;
-  margin-top: 2%;
+  margin-top: 4%;
   text-align: center;
-  width: 70%;
+  width: 60%;
 }
 
 /* Seperate column sections within rows*/
@@ -74,7 +74,6 @@ img {
 .scroller section {
   margin-top: 5% 0 0 1%;
   scroll-snap-align: center;
-  /*margin-left: 1%;*/
 }
 
 /* Slideshow positioning*/
@@ -124,4 +123,14 @@ img {
 
 .mySlides img {
   border-radius: 0;
+}
+
+.fa {
+  border-radius: 50%;
+  color: gray;
+  font-size: 30px;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  width: 30px;
 }
