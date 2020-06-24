@@ -30,7 +30,6 @@ function currentSlide(slideNum) {
 
 // Show only the current slide and dot needed, hide others
 function showSlides(slideNum) {
-  console.log('works')
   let i;
   let slides = document.getElementsByClassName("mySlides");
   let dots = document.getElementsByClassName("dot");
