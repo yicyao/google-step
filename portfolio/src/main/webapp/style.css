@@ -128,3 +128,7 @@ img {
 .mySlides .miniSlides {
   display: none;
 }
+
+.mySlides img {
+  border-radius: 0;
+}
