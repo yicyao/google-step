@@ -31,6 +31,7 @@ function currentSlide(slideNum) {
 }
 
 // Show only the current slide and dot needed, hide others
+
 function showSlides(type, slideNum) {
   let slides;
   if (type === "dots") { 
@@ -41,6 +42,7 @@ function showSlides(type, slideNum) {
   }
 
   const dots = document.getElementsByClassName("dot");
+
 
   //wraps slide number around to insure in bounds
   if (slideNum > slides.length) {slideIndex = 1}
