@@ -1,21 +1,21 @@
 html, body {
-  overflow-x: hidden;
   height: 100vh;
-  overflow: hidden;
   font-family: "Open Sans";
-  word-break: break-word;
-  word-wrap: break-word;
+  overflow-x: hidden;
+  overflow: hidden;
   padding-bottom: 5%;
-}
-
-.multiline
-{
-  white-space: pre-wrap;
+  word-break: break-word;
+  word-wrap: break-word; 
 }
 
 /* Circle images*/
 img {
   border-radius: 50%;
+}
+
+.multiline
+{
+  white-space: pre-wrap;
 }
 
 .header {
@@ -27,24 +27,24 @@ img {
 .subheader {
   color: gray;
   font-size: 20px;
-  text-align: center;
   line-height: 90%;
+  text-align: center;
 }
 
 .subtext {
   color: gray;
   font-size: 12px;
-  text-align: center;
   margin-top: 5px;
+  text-align: center;
 }
 
 /* About Portion */
-.about {
-  white-space: pre-wrap;
-  text-align: left;
-  word-wrap: break-word;
-  margin-bottom: 5px;
+.about { 
   font-size: 15px;
+  margin-bottom: 5px;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 /* Seperate row sections */
@@ -52,77 +52,70 @@ img {
   display: flex;
   flex-direction: row;
   margin: auto;
-  width: 70%;
   margin-top: 5%;
   text-align: center;
+  width: 70%;
 }
 
 /* Seperate column sections within rows*/
 .column {
-    line-height: 100%;
-    width: 50%;  
-}
-
-.full-width-bar {
-  margin: 0 -9999rem;
-  padding: 0.25rem 9999rem;
-  background: gray;
+  line-height: 100%;
+  width: 50%;  
 }
 
 /* Snap scroll*/
 .scroller {
-  overflow: scroll;
   height: 100vh;
+  overflow: scroll;
   scroll-snap-points-y: repeat(100vh);
   scroll-snap-type: y mandatory;
-
 }
 
 .scroller section {
-  margin-top: 5%;
+  margin-top: 5% 0 0 1%;
   scroll-snap-align: center;
-  margin-left: 1%;
+  /*margin-left: 1%;*/
 }
 
 /* Slideshow positioning*/
 .slideshow-container {
+  margin: auto;
   max-width: 1000px;
   position: relative;
-  margin: auto;
 }
 
 /* Slideshow arrows*/
 .prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
+  border-radius: 0 3px 3px 0;
   color: black;
+  cursor: pointer;
   font-weight: bold;
   font-size: 18px;
+  margin-top: -22px; 
+  padding: 16px;
+  position: absolute;
+  top: 50%;
   transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
   user-select: none;
+  width: auto;
 }
 
 /* Slideshow: Position the "next button" to the right */
 .next {
-  right: 0;
   border-radius: 3px 0 0 3px;
+  right: 0;
 }
 
 /* Slideshow three dots*/
 .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
   background-color: #bbb;
   border-radius: 50%;
+  cursor: pointer;
   display: inline-block;
+  height: 15px;
+  margin: 0 2px;
   transition: background-color 0.6s ease;
+  width: 15px;
 }
 
 .mySlides .miniSlides {
