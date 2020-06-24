@@ -14,32 +14,42 @@
 
 /* Creates Slideshow Carousel to go through my projects*/
 
-var slideIndex = 1;
-showSlides(slideIndex += n);
+/**
+* @param slideNum: Index of Slide to navigate to
+*/
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+// Navigate to next slide
+function plusSlides(slideNum) { 
+  showSlides(slideIndex += slideNum);
 }
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
+// Navigate to slide indicated by slideNum
+function currentSlide(slideNum) {
+  showSlides(slideIndex = slideNum);
 }
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
+// Show only the current slide and dot needed, hide others
+function showSlides(slideNum) {
+  console.log('works')
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  
+  //wraps slide number around to insure in bounds
+  if (slideNum > slides.length) {slideIndex = 1}
+  if (slideNum <= 1) {slideIndex = slides.length}
+  
+  //hides all slides
   for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
   }
+  
+  //makes all dots inactive
   for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
   }
+  
+  //shows only current slide
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
