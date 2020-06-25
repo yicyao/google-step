@@ -13,22 +13,22 @@
 // limitations under the License.
 
 /* Creates Slideshow Carousel to go through my projects*/
+
 /**
 * @param slideNum: Index of Slide to navigate to
 */
 
-// Navigate to next slide
+// Navigates to next slide
 function plusSlides(slideNum) {
   showSlides("arrow", slideIndex += slideNum);
-
 }
 
-// Navigate to slide indicated by slideNum
+// Navigates to slide indicated by slideNum
 function currentSlide(slideNum) {
   showSlides("dots", slideIndex = slideNum);
 }
 
-// Show only the current slide and dot needed, hide others
+// Shows only the current slide and dot needed, hide others
 function showSlides(type, slideNum) {
   let slides;
   const dots = document.getElementsByClassName("dot");
@@ -44,7 +44,7 @@ function showSlides(type, slideNum) {
   if (slideNum > slides.length) {slideIndex = 1}
   if (slideNum < 1) {slideIndex = slides.length}
 
-  //hide all dots and slides
+  //hides all dots and slides
   for (let i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
