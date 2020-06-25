@@ -49,12 +49,13 @@ img {
 
 /* Seperate row sections */
 .row {
+  align: center;
   display: flex;
   flex-direction: row;
   margin: auto;
   margin-top: 4%;
   text-align: center;
-  width: 60%;
+  width: 50%;
 }
 
 /* Seperate column sections within rows*/
@@ -125,6 +126,7 @@ img {
   border-radius: 0;
 }
 
+/* social media icons */
 .fa {
   border-radius: 50%;
   color: gray;
@@ -133,4 +135,50 @@ img {
   text-align: center;
   text-decoration: none;
   width: 30px;
+}
+
+/* flipcards to rotate card and show back */
+.flip-card {
+  background-color: transparent;
+  border-radius:50%;
+  height: 100px;
+  perspective: 1000px;
+  width: 100px;
+}
+
+.flip-card-inner {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  width: 100%;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  backface-visibility: hidden;
+  border-radius:50%;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  align-items: center;
+  background-color: gray;
+  color: white;
+  display: flex;
+  justify-content: center; 
+  transform: rotateY(180deg);
 }
