@@ -12,17 +12,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* Creates Slideshow Carousel to go through my projects*/
+
 /**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+* @param slideNum: Index of Slide to navigate to
+*/
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+// Navigates to next slide
+function plusSlides(slideNum) {
+  showSlides("arrow", slideIndex += slideNum);
+}
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+// Navigates to slide indicated by slideNum
+function currentSlide(slideNum) {
+  showSlides("dots", slideIndex = slideNum);
+}
+
+// Shows only the current slide and dot needed, hide others
+function showSlides(type, slideNum) {
+  let slides;
+  const dots = document.getElementsByClassName("dot");
+
+  if (type === "dots") { 
+    slides = document.getElementsByClassName("miniSlides");
+  }
+  else {
+    slides = document.getElementsByClassName("mySlides");
+  }
+
+  //wraps slide number around to insure in bounds
+  if (slideNum > slides.length) {slideIndex = 1}
+  if (slideNum < 1) {slideIndex = slides.length}
+
+  //hides all dots and slides
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+
+  //shows only current slide and dot
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
 }
