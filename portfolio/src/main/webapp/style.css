@@ -43,8 +43,6 @@ img {
   font-size: 15px;
   margin-bottom: 5px;
   text-align: left;
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
 
 /* Seperate row sections */
