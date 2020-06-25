@@ -1,9 +1,6 @@
 html, body {
   height: 100vh;
   font-family: "Open Sans";
-  overflow-x: hidden;
-  overflow: hidden;
-  padding-bottom: 5%;
   word-break: break-word;
   word-wrap: break-word; 
 }
@@ -21,6 +18,17 @@ img {
 .header {
   color: gray;
   font-size: 60px;
+  line-height:0;
+  text-align: center;
+}
+
+.spread {
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  width: 40%;
   text-align: center;
 }
 
@@ -62,17 +70,9 @@ img {
   width: 50%;  
 }
 
-/* Snap scroll*/
+/* scroll*/
 .scroller {
-  height: 100vh;
   overflow: scroll;
-  scroll-snap-points-y: repeat(100vh);
-  scroll-snap-type: y mandatory;
-}
-
-.scroller section {
-  margin-top: 8% 0 0 1%;
-  scroll-snap-align: center;
 }
 
 /* Slideshow positioning*/
@@ -164,7 +164,6 @@ img {
   position: absolute;
   width: 100%;
   -webkit-backface-visibility: hidden;
-
 }
 
 .flip-card-front {

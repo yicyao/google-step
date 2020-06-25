@@ -7,17 +7,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body> 
     <!-- Header -->
-    <div class = "header"> Yichen Yao</div>
+    <div class = "header"> <p id="top">Yichen Yao</p></div>
+ 
+    <!-- Nav bar -->
     <hr align="center" width="50%">
-  
-    <!-- Snap Scroll Start -->
+      <div class = "spread" >
+        <div> <a href="#about">About</a></div>
+        <div> <a href="#experience">Experience</a></div>
+        <div> <a href="#projects">Projects</a></div>
+        <div> <a href="#activities">Activities</a></div>
+      </div>
+    <hr align="center" width="50%">
+     
+    <!-- Scroll Start -->
     <article class="scroller">
       <!-- Introduction -->
       <section>
         <div class="row">
           <div class="column">
+            <p id="about"></p>
             <img src="images/me.jpeg"  width="250" height="250">
           </div>
 
@@ -39,11 +49,11 @@
           </div>
         </div>
         <br><br><br><br>
-       </section>
+        </section>
 
       <!-- Experience -->
       <section>
-        <div class = "subheader" style="font-size: 24px">Here's what I've done so far:</div>
+        <div class = "subheader" style="font-size: 24px"><p id="experience">Here's what I've done so far:</p></div>
         <hr align="center" width="50%">
         
         <div class="row">
@@ -134,7 +144,7 @@
       
       <!-- Projects -->
       <section>
-        <div class = "subheader" style="font-size: 24px">Fun projects:</div>
+        <div class = "subheader" style="font-size: 24px"><p id="projects">Fun projects:</p></div>
         <hr align="center" width="50%">
         <div class = "subheader" style="font-size: 16px"> scroll through to see what I've worked on: </div>
         
@@ -196,7 +206,8 @@
       
       <!-- Clubs/Activities-->
       <section>
-        <div class = "subheader" style="font-size: 24px">Professional Activities:</div>
+        <div class = "subheader" style="font-size: 24px"><p id="activities">Professional Activities:</p></div>
+        </a>
         <hr align="center" width="50%">
         <div class = "subheader" style="font-size: 16px"> click to learn more about my involvements! </div>
         
@@ -261,8 +272,10 @@
         </div>
         </div>
       </section>
-      
+
       <!-- Whitespace-->
+      <section> <br><br><br></section>
+      <section> <div class = "subheader" style="font-size: 12px"> <a href="#top">navigate back to top</a> </div> </section>
       <section> <br><br><br><br><br><br></section>
 
     </article>
