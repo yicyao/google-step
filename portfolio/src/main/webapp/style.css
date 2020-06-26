@@ -1,13 +1,14 @@
-html, body {
+html,
+body {
   height: 100vh;
   font-family: "Open Sans";
   word-break: break-word;
-  word-wrap: break-word; 
+  word-wrap: break-word;
 }
 
 a {
   color: gray;
-  text-decoration: none; 
+  text-decoration: none;
 }
 
 /* Circle images*/
@@ -15,15 +16,14 @@ img {
   border-radius: 50%;
 }
 
-.multiline
-{
+.multiline {
   white-space: pre-wrap;
 }
 
 .header {
   color: gray;
   font-size: 60px;
-  line-height:0;
+  line-height: 0;
   text-align: center;
   text-transform: uppercase;
 }
@@ -54,7 +54,7 @@ img {
 }
 
 /* About Portion */
-.about { 
+.about {
   font-size: 15px;
   margin-bottom: 5px;
   text-align: left;
@@ -74,7 +74,7 @@ img {
 /* Seperate column sections within rows*/
 .column {
   line-height: 100%;
-  width: 50%;  
+  width: 50%;
 }
 
 /* scroll*/
@@ -90,13 +90,14 @@ img {
 }
 
 /* Slideshow arrows*/
-.prev, .next {
+.prev,
+.next {
   border-radius: 0 3px 3px 0;
   color: black;
   cursor: pointer;
   font-weight: bold;
   font-size: 18px;
-  margin-top: -22px; 
+  margin-top: -22px;
   padding: 16px;
   position: absolute;
   top: 50%;
@@ -145,7 +146,7 @@ img {
 /* flipcards to rotate card and show back */
 .flip-card {
   background-color: transparent;
-  border-radius:50%;
+  border-radius: 50%;
   height: 100px;
   perspective: 1000px;
   width: 100px;
@@ -164,9 +165,10 @@ img {
   transform: rotateY(180deg);
 }
 
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   backface-visibility: hidden;
-  border-radius:50%;
+  border-radius: 50%;
   height: 100%;
   position: absolute;
   width: 100%;
@@ -183,6 +185,6 @@ img {
   background-color: gray;
   color: white;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   transform: rotateY(180deg);
 }
