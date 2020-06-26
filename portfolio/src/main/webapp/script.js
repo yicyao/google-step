@@ -21,11 +21,30 @@
 // Navigates to next slide
 function plusSlides(slideNum) {
   showSlides("arrow", (slideIndex += slideNum));
+
+  // depends on which set of slides
+  firstSlides = document
+    .getElementById("slide1")
+    .getElementsByClassName("miniSlides");
+  showMiniSlides(firstSlides);
+
+  secondSlides = document
+    .getElementById("slide2")
+    .getElementsByClassName("miniSlides");
+  showMiniSlides(secondSlides);
 }
 
 // Navigates to slide indicated by slideNum
 function currentSlide(slideNum) {
   showSlides("dots", (slideIndex = slideNum));
+}
+
+// Shows slides within slides
+function showMiniSlides(slides) {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[0].style.display = "block";
 }
 
 // Shows only the current slide and dot needed, hide others
