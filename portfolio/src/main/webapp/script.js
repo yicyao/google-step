@@ -80,6 +80,7 @@ function showSlides(type, slideNum) {
   dots[slideIndex - 1].className += " active";
 }
 
+//says hello
 async function sayHello() {
   const response = await fetch('/data');
   console.log('getting data')
