@@ -35,14 +35,11 @@ public class DataServlet extends HttpServlet {
         greetings.add("Hi, Yichen!");
         greetings.add("Hey, Yichen!");
     }
-
-    
+ 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         String json = new Gson().toJson(greetings);
         response.setContentType("text/html;");
         response.getWriter().println(json);
-
     }
 }

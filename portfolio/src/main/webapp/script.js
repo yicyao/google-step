@@ -58,7 +58,7 @@ function showSlides(type, slideNum) {
     slides = document.getElementsByClassName("mySlides");
   }
 
-  //wraps slide number around to insure in bounds
+  //Wraps slide number around to insure in bounds
   if (slideNum > slides.length) {
     slideIndex = 1;
   }
@@ -66,7 +66,7 @@ function showSlides(type, slideNum) {
     slideIndex = slides.length;
   }
 
-  //hides all dots and slides
+  //Hides all dots and slides
   for (let i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
@@ -75,16 +75,25 @@ function showSlides(type, slideNum) {
     slides[i].style.display = "none";
   }
 
-  //shows only current slide and dot
+  //Shows only current slide and dot
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
 }
 
-//says hello
+//Fetches hellos from /data and displays
 async function sayHello() {
-  const response = await fetch('/data');
-  console.log('getting data')
-  const hello = await response.text();
+  fetch('/data').then((response) => response.json()).then((greetings) => {
+    const greetingList = document.getElementById('hello-container')
+    greetingList.innerHTML = '';
+    for (const message of greetings) {
+      greetingList.appendChild(createListElement(message));
+    }
+  });
+}
 
-  document.getElementById('hello-container').innerHTML = hello;
+//Creates an <li> element containing text
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
