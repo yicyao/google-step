@@ -80,20 +80,22 @@ function showSlides(type, slideNum) {
   dots[slideIndex - 1].className += " active";
 }
 
-//Fetches hellos from /data and displays
-async function sayHello() {
-  fetch('/data').then((response) => response.json()).then((greetings) => {
-    const greetingList = document.getElementById('hello-container')
-    greetingList.innerHTML = '';
-    for (const message of greetings) {
-      greetingList.appendChild(createListElement(message));
-    }
-  });
+//Fetches comments from /data and displays
+async function getComment() {
+  fetch("/data")
+    .then((response) => response.json())
+    .then((greetings) => {
+      const greetingList = document.getElementById("comment-container");
+      greetingList.innerHTML = "";
+      for (const message of greetings) {
+        greetingList.appendChild(createListElement(message));
+      }
+    });
 }
 
 //Creates an <li> element containing text
 function createListElement(text) {
-  const liElement = document.createElement('li');
+  const liElement = document.createElement("li");
   liElement.innerText = text;
   return liElement;
 }

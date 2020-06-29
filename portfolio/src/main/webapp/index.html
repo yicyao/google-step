@@ -10,7 +10,7 @@
     />
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComment()">
     <!-- Header -->
     <div class="header"><p id="top">Yichen Yao</p></div>
 
@@ -37,9 +37,15 @@
 
           <div class="column">
             <div class="about">Hi, I'm Yichen.</div>
-            <button onclick="sayHello()">Say Hello!</button>
-            <div id="hello-container"></div>
 
+            <!-- Comment form -->
+            <form action="/data" method="POST">
+              <textarea name="text-input">Enter a comment!</textarea>
+              <br />
+              <br />
+              <input type="submit" onclick="getComment()" />
+            </form>
+            <div id="comment-container"></div>
 
             <br />
             <div class="about">
