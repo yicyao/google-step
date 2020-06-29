@@ -79,3 +79,11 @@ function showSlides(type, slideNum) {
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
 }
+
+async function sayHello() {
+  const response = await fetch('/data');
+  console.log('getting data')
+  const hello = await response.text();
+
+  document.getElementById('hello-container').innerHTML = hello;
+}
