@@ -1,11 +1,14 @@
-html, body {
+html,
+body {
   height: 100vh;
   font-family: "Open Sans";
-  overflow-x: hidden;
-  overflow: hidden;
-  padding-bottom: 5%;
   word-break: break-word;
-  word-wrap: break-word; 
+  word-wrap: break-word;
+}
+
+a {
+  color: gray;
+  text-decoration: none;
 }
 
 /* Circle images*/
@@ -13,15 +16,27 @@ img {
   border-radius: 50%;
 }
 
-.multiline
-{
+.multiline {
   white-space: pre-wrap;
 }
 
 .header {
   color: gray;
   font-size: 60px;
+  line-height: 0;
   text-align: center;
+  text-transform: uppercase;
+}
+
+.spread {
+  color: gray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  width: 40%;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .subheader {
@@ -39,7 +54,7 @@ img {
 }
 
 /* About Portion */
-.about { 
+.about {
   font-size: 15px;
   margin-bottom: 5px;
   text-align: left;
@@ -47,32 +62,24 @@ img {
 
 /* Seperate row sections */
 .row {
+  align: center;
   display: flex;
   flex-direction: row;
   margin: auto;
   margin-top: 2%;
   text-align: center;
-  width: 70%;
+  width: 50%;
 }
 
 /* Seperate column sections within rows*/
 .column {
   line-height: 100%;
-  width: 50%;  
+  width: 50%;
 }
 
-/* Snap scroll*/
+/* scroll*/
 .scroller {
-  height: 100vh;
   overflow: scroll;
-  scroll-snap-points-y: repeat(100vh);
-  scroll-snap-type: y mandatory;
-}
-
-.scroller section {
-  margin-top: 5% 0 0 1%;
-  scroll-snap-align: center;
-  /*margin-left: 1%;*/
 }
 
 /* Slideshow positioning*/
@@ -83,13 +90,14 @@ img {
 }
 
 /* Slideshow arrows*/
-.prev, .next {
+.prev,
+.next {
   border-radius: 0 3px 3px 0;
   color: black;
   cursor: pointer;
   font-weight: bold;
   font-size: 18px;
-  margin-top: -22px; 
+  margin-top: -22px;
   padding: 16px;
   position: absolute;
   top: 50%;
@@ -122,4 +130,61 @@ img {
 
 .mySlides img {
   border-radius: 0;
+}
+
+/* social media icons */
+.fa {
+  border-radius: 50%;
+  color: gray;
+  font-size: 100px;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  width: 50px;
+}
+
+/* flipcards to rotate card and show back */
+.flip-card {
+  background-color: transparent;
+  border-radius: 50%;
+  height: 100px;
+  perspective: 1000px;
+  width: 100px;
+}
+
+.flip-card-inner {
+  height: 100%;
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  width: 100%;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  border-radius: 50%;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  align-items: center;
+  background-color: gray;
+  color: white;
+  display: flex;
+  justify-content: center;
+  transform: rotateY(180deg);
 }
