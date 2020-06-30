@@ -20,45 +20,43 @@
 
 // Navigates to next slide
 function plusSlides(slideNum) {
-  showSlides("arrow", (slideIndex += slideNum));
+  showSlides('arrow', (slideIndex += slideNum));
 
   // depends on which set of slides
-  firstSlides = document
-    .getElementById("slide1")
-    .getElementsByClassName("miniSlides");
+  firstSlides =
+      document.getElementById('slide1').getElementsByClassName('miniSlides');
   showMiniSlides(firstSlides);
 
-  secondSlides = document
-    .getElementById("slide2")
-    .getElementsByClassName("miniSlides");
+  secondSlides =
+      document.getElementById('slide2').getElementsByClassName('miniSlides');
   showMiniSlides(secondSlides);
 }
 
 // Navigates to slide indicated by slideNum
 function currentSlide(slideNum) {
-  showSlides("dots", (slideIndex = slideNum));
+  showSlides('dots', (slideIndex = slideNum));
 }
 
 // Shows slides within slides
 function showMiniSlides(slides) {
   for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+    slides[i].style.display = 'none';
   }
-  slides[0].style.display = "block";
+  slides[0].style.display = 'block';
 }
 
 // Shows only the current slide and dot needed, hide others
 function showSlides(type, slideNum) {
   let slides;
-  const dots = document.getElementsByClassName("dot");
+  const dots = document.getElementsByClassName('dot');
 
-  if (type === "dots") {
-    slides = document.getElementsByClassName("miniSlides");
+  if (type === 'dots') {
+    slides = document.getElementsByClassName('miniSlides');
   } else {
-    slides = document.getElementsByClassName("mySlides");
+    slides = document.getElementsByClassName('mySlides');
   }
 
-  //Wraps slide number around to insure in bounds
+  // Wraps slide number around to insure in bounds
   if (slideNum > slides.length) {
     slideIndex = 1;
   }
@@ -66,36 +64,34 @@ function showSlides(type, slideNum) {
     slideIndex = slides.length;
   }
 
-  //Hides all dots and slides
+  // Hides all dots and slides
   for (let i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
+    dots[i].className = dots[i].className.replace(' active', '');
   }
 
   for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+    slides[i].style.display = 'none';
   }
 
-  //Shows only current slide and dot
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
+  // Shows only current slide and dot
+  slides[slideIndex - 1].style.display = 'block';
+  dots[slideIndex - 1].className += ' active';
 }
 
-//Fetches comments from /data and displays
+// Fetches comments from /data and displays
 async function getComment() {
-  fetch("/data")
-    .then((response) => response.json())
-    .then((greetings) => {
-      const greetingList = document.getElementById("comment-container");
-      greetingList.innerHTML = "";
-      for (const message of greetings) {
-        greetingList.appendChild(createListElement(message));
-      }
-    });
+  fetch('/data').then((response) => response.json()).then((greetings) => {
+    const greetingList = document.getElementById('comment-container');
+    greetingList.innerHTML = '';
+    for (const message of greetings) {
+      greetingList.appendChild(createListElement(message));
+    }
+  });
 }
 
-//Creates an <li> element containing text
+// Creates an <li> element containing text
 function createListElement(text) {
-  const liElement = document.createElement("li");
+  const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
 }
