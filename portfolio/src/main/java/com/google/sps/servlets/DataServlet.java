@@ -38,7 +38,7 @@ public class DataServlet extends HttpServlet {
   // Retrieves inputted comments from form and redirects result back to page
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = gson.toJson(getParameter(request, "text-input", /* defaultValue=*/""));
+    String json = new Gson().toJson(getParameter(request, "text-input", /* defaultValue=*/""));
     comments.add(json);
 
     response.setContentType("text/html;");
@@ -47,8 +47,8 @@ public class DataServlet extends HttpServlet {
   }
 
   //@return the request parameter, or the default value if the parameter was not specified by the
-  //client
-  Optional String getParameter(HttpServletRequest request, String name, String defaultValue) {
+  // client
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
     return (value == null) ? defaultValue : value;
   }

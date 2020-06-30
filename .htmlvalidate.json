@@ -6,6 +6,14 @@
     "html-validate:recommended"
   ],
   "rules": {
-    "void-style": "off"
+    "void-style": "off",
+    "no-deprecated-attr": "off",
+    "wcag/h30": "off",
+    "no-inline-style": "off", 
+    "element-required-attributes": "off", 
+    "element-permitted-content": "off", 
+    "prefer-button": "off", 
+    "attribute-allowed-values": "off", 
+    "wcag/h37": "off"
   }
 }
