@@ -14,6 +14,7 @@
 
 package com.google.sps.servlets;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,42 +22,34 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.Gson;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+
+//Servlet that returns comments that users input
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private List<String> comments;
+    private List<String> comments = new ArrayList<>();
 
-    @Override
-    public void init() {
-        comments = new ArrayList<>();
-    }
- 
+    // Retrieves previously inputted comments
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = new Gson().toJson(comments);
         response.setContentType("text/html;");
-        response.getWriter().println(json);
+        response.getWriter().println(new Gson().toJson(comments));
     }
 
+    // Retrieves inputted comments from form and redirects result back to page
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String text = getParameter(request, "text-input", "");
-        comments.add(text);  //holds arraylist of entered comments
+        String json = gson.toJson(getParameter(request, "text-input", /* defaultValue=*/ ""));
+        comments.add(json);
 
+        response.setContentType("text/html;");
+        response.getWriter().println(json);
         response.sendRedirect("/index.html");
     }
 
-    /**
-   * @return the request parameter, or the default value if the parameter
-   *         was not specified by the client
-   */
-    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    //@return the request parameter, or the default value if the parameter was not specified by the client
+    Optional String getParameter(HttpServletRequest request, String name, String defaultValue) {
         String value = request.getParameter(name);
-        if (value == null) {
-        return defaultValue;
-        }
-        return value;
+        return (value == null) ? defaultValue : value;
     }
 }
