@@ -1,8 +1,7 @@
 html,
 body {
   height: 100vh;
-  font-family: "Open Sans";
-  word-break: break-word;
+  font-family: 'Open Sans';
   word-wrap: break-word;
 }
 
@@ -62,7 +61,6 @@ img {
 
 /* Seperate row sections */
 .row {
-  align: center;
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -172,7 +170,6 @@ img {
   height: 100%;
   position: absolute;
   width: 100%;
-  -webkit-backface-visibility: hidden;
 }
 
 .flip-card-front {
