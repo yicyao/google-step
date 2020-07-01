@@ -48,7 +48,6 @@ public class DataServlet extends HttpServlet {
   }
 
   // Puts inputted comments into database and redirects result back to page
-  // TO DO: check if input is null
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Entity commentEntity = new Entity("Comment");
@@ -64,6 +63,6 @@ public class DataServlet extends HttpServlet {
   // client
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
-    return (value == null || value.equals("")) ? defaultValue : value;
+    return (value == null || value.isEmpty()) ? defaultValue : value;
   }
 }

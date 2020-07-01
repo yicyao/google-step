@@ -33,16 +33,6 @@
 
           <div class="column">
             <div class="about">Hi, I'm Yichen.</div>
-
-            <!-- Comment form -->
-            <form action="/data" method="POST">
-              <textarea name="text-input">Enter a comment!</textarea>
-              <br />
-              <br />
-              <input type="submit" onclick="getComment()" />
-            </form>
-            <div id="comment-container"></div>
-
             <br />
             <div class="about">
               Originally from Urbana, IL, I am a rising junior at
@@ -498,6 +488,27 @@
           </div>
         </div>
       </section>
+
+        <section>
+            <br / >
+        <!-- Comment form -->
+        
+        <hr align="center" width="50%" />
+        <div class="subheader">Leave a comment or ask a question!</div>
+            <div class="row">
+                <div class="column" style="width: 100%;">
+            <form action="/data" method="POST">
+              <textarea name="text-input"></textarea>
+              <br />
+              <br />
+              <input type="submit" onclick="getComment()" />
+            </form>
+            </div>
+            </div>
+            <div id="comment-container"></div>
+        <hr align="center" width="50%" />
+        
+    </section>
 
       <!-- Whitespace-->
       <section>

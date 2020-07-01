@@ -15,6 +15,15 @@ img {
   border-radius: 50%;
 }
 
+form 
+input {
+    display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 2%;
+  text-align: center;
+}
+
 .multiline {
   white-space: pre-wrap;
 }
