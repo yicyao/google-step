@@ -83,11 +83,20 @@ async function getComment() {
       greetingList.appendChild(createListElement(message));
     }
   });
+  console.log(greetingList);
 }
 
 // Creates an <li> element containing text
 function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+  const trElement = document.createElement('tr');
+  const tdElement = document.createElement('td');
+
+  tdElement.innerHTML = text;
+
+  trElement.appendChild(tdElement)
+
+
+  //<tr><td>Name</td><td>Message</td></tr>
+  // liElement.innerText = text;
+  return trElement;
 }

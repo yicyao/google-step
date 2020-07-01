@@ -15,9 +15,8 @@ img {
   border-radius: 50%;
 }
 
-form 
-input {
-    display: flex;
+form input {
+  display: flex;
   flex-direction: row;
   margin: auto;
   margin-top: 2%;
