@@ -20,17 +20,17 @@ table {
 }
 
 td {
-    text-align: center;
+  text-align: center;
 }
 
-tr{
-      display: flex;
+tr {
+  display: flex;
   flex-direction: row;
-    margin: auto;
+  margin: auto;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 form input {

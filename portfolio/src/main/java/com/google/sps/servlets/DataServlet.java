@@ -21,6 +21,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.sps.data.Comment;
 
 // Servlet that returns comments that users input
 @WebServlet("/data")
@@ -38,14 +38,15 @@ public class DataServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-    PreparedQuery results = datastore.prepare(new Query("Comment").addSort("timestamp", SortDirection.DESCENDING));
+    PreparedQuery results =
+        datastore.prepare(new Query("Comment").addSort("timestamp", SortDirection.DESCENDING));
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-        long id = entity.getKey().getId();
+      long id = entity.getKey().getId();
       String name = (String) entity.getProperty("name");
       String message = (String) entity.getProperty("message");
       long timestamp = (long) entity.getProperty("timestamp");
-      comments.add(new Comment(id, name,  timestamp,message));
+      comments.add(new Comment(id, name, timestamp, message));
     }
     response.setContentType("text/html;");
     response.getWriter().println(new Gson().toJson(comments));
@@ -59,14 +60,11 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("message", getParameter(request, "text-input", /* defaultValue=*/""));
     commentEntity.setProperty("timestamp", System.currentTimeMillis());
 
-
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     if (!((String) commentEntity.getProperty("message")).isEmpty()) {
-
-        datastore.put(commentEntity);
+      datastore.put(commentEntity);
     }
-    
 
     response.sendRedirect("/index.html");
   }
