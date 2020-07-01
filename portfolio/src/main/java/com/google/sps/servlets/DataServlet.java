@@ -14,42 +14,56 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
 
-
-//Servlet that returns comments that users input
+// Servlet that returns comments that users input
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    private List<String> comments = new ArrayList<>();
+  // Retrieves previously inputted comments from database
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-    // Retrieves previously inputted comments
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;");
-        response.getWriter().println(new Gson().toJson(comments));
+    PreparedQuery results = datastore.prepare(new Query("Comment"));
+    List<String> comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      String message = (String) entity.getProperty("message");
+      comments.add(message);
     }
+    response.setContentType("text/html;");
+    response.getWriter().println(new Gson().toJson(comments));
+  }
 
-    // Retrieves inputted comments from form and redirects result back to page
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = gson.toJson(getParameter(request, "text-input", /* defaultValue=*/ ""));
-        comments.add(json);
+  // Puts inputted comments into database and redirects result back to page
+  // TO DO: check if input is null
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("message", getParameter(request, "text-input", /* defaultValue=*/""));
 
-        response.setContentType("text/html;");
-        response.getWriter().println(json);
-        response.sendRedirect("/index.html");
-    }
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
 
-    //@return the request parameter, or the default value if the parameter was not specified by the client
-    Optional String getParameter(HttpServletRequest request, String name, String defaultValue) {
-        String value = request.getParameter(name);
-        return (value == null) ? defaultValue : value;
-    }
+    response.sendRedirect("/index.html");
+  }
+
+  //@return the request parameter, or the default value if the parameter was not specified by the
+  // client
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    return (value == null || value.equals("")) ? defaultValue : value;
+  }
 }
