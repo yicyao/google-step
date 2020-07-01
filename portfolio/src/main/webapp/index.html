@@ -498,12 +498,11 @@
         <div class="row">
           <div class="column" style="width: 100%;">
             <form action="/data" method="POST">
-              <textarea name="text-input"></textarea>
-              <br />
-              <br />
-              <input type="submit" onclick="getComment()" />
+              <input type="text" class="form-control" placeholder="Enter name..."  name="name-input"></input>
+              <input type="text" class="form-control" placeholder="Enter comment..."  name="text-input"></input>
+              <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
             </form>
-
+            <br />
             <table id="comment-container"></table>
           </div>
         </div>

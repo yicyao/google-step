@@ -79,24 +79,24 @@ async function getComment() {
   fetch('/data').then((response) => response.json()).then((greetings) => {
     const greetingList = document.getElementById('comment-container');
     greetingList.innerHTML = '';
+    console.log(greetings);
     for (const message of greetings) {
-      greetingList.appendChild(createListElement(message));
+        console.log(message);
+      greetingList.appendChild(createTableElement(message));
     }
   });
-  console.log(greetingList);
 }
 
-// Creates an <li> element containing text
-function createListElement(text) {
+// Creates an table element containing text
+function createTableElement(text) {
+    //<tr><td>Name</td><td>Message</td></tr>
   const trElement = document.createElement('tr');
-  const tdElement = document.createElement('td');
-
-  tdElement.innerHTML = text;
-
-  trElement.appendChild(tdElement)
-
-
-  //<tr><td>Name</td><td>Message</td></tr>
-  // liElement.innerText = text;
+  const tdElementName = document.createElement('td');
+  tdElementName.innerHTML = text.text + ' -' + text.name + " on " + new Date(text.timestamp).toDateString();
+  //const tdElementMessage = document.createElement('td');
+  //tdElementMessage.innerHTML = text.text;
+  trElement.appendChild(tdElementName);
+  //trElement.appendChild(tdElementMessage);
+  console.log(trElement);
   return trElement;
 }

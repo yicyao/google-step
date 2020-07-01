@@ -28,6 +28,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.sps.data.Comment;
 
 // Servlet that returns comments that users input
 @WebServlet("/data")
@@ -37,11 +38,14 @@ public class DataServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-    PreparedQuery results = datastore.prepare(new Query("Comment"));
-    List<String> comments = new ArrayList<>();
+    PreparedQuery results = datastore.prepare(new Query("Comment").addSort("timestamp", SortDirection.DESCENDING));
+    List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
+        long id = entity.getKey().getId();
+      String name = (String) entity.getProperty("name");
       String message = (String) entity.getProperty("message");
-      comments.add(message);
+      long timestamp = (long) entity.getProperty("timestamp");
+      comments.add(new Comment(id, name,  timestamp,message));
     }
     response.setContentType("text/html;");
     response.getWriter().println(new Gson().toJson(comments));
@@ -51,10 +55,18 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("name", getParameter(request, "name-input", "Anonymous"));
     commentEntity.setProperty("message", getParameter(request, "text-input", /* defaultValue=*/""));
+    commentEntity.setProperty("timestamp", System.currentTimeMillis());
+
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
+
+    if (!((String) commentEntity.getProperty("message")).isEmpty()) {
+
+        datastore.put(commentEntity);
+    }
+    
 
     response.sendRedirect("/index.html");
   }
