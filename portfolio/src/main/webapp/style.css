@@ -41,6 +41,10 @@ form input {
   text-align: center;
 }
 
+input[type='button'] {
+  font-family: 'Open Sans';
+}
+
 .multiline {
   white-space: pre-wrap;
 }
