@@ -95,38 +95,38 @@ function createTableElement(text) {
   return trElement;
 }
 
-// Creates a map and adds it to the page. 
+// Creates a map and adds it to the page
 function createMap() {
   const map = new google.maps.Map(
       document.getElementById('map'),
       {center: {lat: 37.422, lng: -122.084}, zoom: 16});
   const geocoder = new google.maps.Geocoder();
-  document.getElementById("submit").addEventListener("click", function() {
+  document.getElementById('submit').addEventListener('click', function() {
     geocodeAddress(geocoder, map);
   });
 }
 
 // Geocodes map to location indicated by user
 function geocodeAddress(geocoder, resultsMap) {
-  const address = document.getElementById("address").value;
-  geocoder.geocode({ address: address }, function(results, status) {
-    if (status === "OK") {
+  const address = document.getElementById('address').value;
+  geocoder.geocode({address: address}, function(results, status) {
+    if (status === 'OK') {
       resultsMap.setCenter(results[0].geometry.location);
       const marker = new google.maps.Marker({
         map: resultsMap,
-        position: results[0].geometry.location
+        position: results[0].geometry.location,
       });
     } else {
-      alert("Geocode was not successful for the following reason: " + status);
+      alert('Geocode was not successful for the following reason: ' + status);
     }
   });
 }
 
 // Fills out form using suggested locations
-$(document).ready(function(){
-	$("#address_return a").click(function(){
-		const value = $(this).html();
-        const input = $('#address');
-        input.val(value);
-	});
+$(document).ready(function() {
+  $('#address_return a').click(function() {
+    const value = $(this).html();
+    const input = $('#address');
+    input.val(value);
+  });
 });
