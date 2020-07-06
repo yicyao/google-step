@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yichen Yao</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADFoK-nIAnOsAJfSOTC0I_0_lH68vFT-A"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="script.js"></script>
   </head>
-  <body onload="getComment()">
+  <body onload="createMap(); getComment()">
     <!-- Header -->
     <div class="header"><p id="top">Yichen Yao</p></div>
 
@@ -489,10 +490,9 @@
         </div>
       </section>
 
+      <!-- Comment Form-->
       <section>
         <br />
-        <!-- Comment form -->
-
         <hr align="center" width="50%" />
         <div class="subheader">Leave a comment or ask a question!</div>
         <div class="row">
@@ -507,6 +507,13 @@
           </div>
         </div>
         <hr align="center" width="50%" />
+      </section>
+
+      <!-- Maps API-->
+      <section>
+        <hr align="center" width="50%" />
+
+        <div id="map"></div>
       </section>
 
       <!-- Whitespace-->
