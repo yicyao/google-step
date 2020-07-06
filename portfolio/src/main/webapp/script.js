@@ -80,14 +80,17 @@ async function getComment() {
     const greetingList = document.getElementById('comment-container');
     greetingList.innerHTML = '';
     for (const message of greetings) {
-      greetingList.appendChild(createListElement(message));
+      greetingList.appendChild(createTableElement(message));
     }
   });
 }
 
-// Creates an <li> element containing text
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+// Creates an table element for comments containing text with name and date
+function createTableElement(text) {
+  const trElement = document.createElement('tr');
+  const tdElementName = document.createElement('td');
+  tdElementName.innerHTML = `${text.text} - ${text.name} on 
+    ${new Date(text.timestamp).toDateString()}`;
+  trElement.appendChild(tdElementName);
+  return trElement;
 }
