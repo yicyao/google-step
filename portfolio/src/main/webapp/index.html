@@ -260,48 +260,6 @@
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="column">
-            <img src="images/columbia.png" width="150" height="150" />
-          </div>
-
-          <div class="column">
-            <div class="subheader">Columbia University</div>
-            <div class="subtext">Aug 2018-May 2022</div>
-            <hr align="center" width="80%" />
-            <div class="about">
-              Student at Columbia University School of Engineering and Applied Sciences studying computer science, with
-              a focus on Intelligent Systems
-            </div>
-            <div class="about">
-              <li>
-                Relevant Courses: Artificial Intelligence, Advanced Programming in C, Data Structures in Java, Computer
-                Science Theory
-              </li>
-            </div>
-          </div>
-
-          <div class="column">
-            <img src="images/uni.png" width="150" height="150" />
-          </div>
-
-          <div class="column">
-            <div class="subheader">University Laboratory High School</div>
-            <div class="subtext">Aug 2013-May 2018</div>
-            <hr align="center" width="80%" />
-            <div class="about">
-              Graduated
-              <a href="https://www.uni.illinois.edu/">
-                University of Illinois Laboratory High School
-              </a>
-              in 2018.
-            </div>
-            <div class="about">
-              <li>Awards: Best of Class, Science Student of the Year</li>
-            </div>
-          </div>
-        </div>
         <br />
         <br />
         <br />
@@ -515,14 +473,21 @@
       <!-- Maps API-->
       <section>
         <div class="subheader">Check out some special places!</div>
-        <div id="map"></div>
-        <input id="address" type="text" />
-        <div id="address_return">
-          <a href="#fun" class="test" value="test">Champaign, IL</a>
-          <a href="#fun" class="test">New York, NY</a>
-          <a href="#fun" class="test">Urbana, IL</a>
+        <div class="row">
+          <div class="column">
+            <div id="map"></div>
+          </div>
+          <div class="column">
+            <input id="address" type="text" />
+            <div id="address_return">
+              <a href="#fun">Champaign, IL</a>
+              <a href="#fun">New York, NY</a>
+              <a href="#fun">Urbana, IL</a>
+            </div>
+            <input id="submit" type="button" value="Go!" />
+          </div>
         </div>
-        <input id="submit" type="button" value="Geocode" />
+        <hr align="center" width="50%" />
       </section>
 
       <!-- Whitespace-->
