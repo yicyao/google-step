@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yichen Yao</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADFoK-nIAnOsAJfSOTC0I_0_lH68vFT-A"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -19,6 +20,7 @@
       <div><a href="#experience">Experience</a></div>
       <div><a href="#projects">Projects</a></div>
       <div><a href="#activities">Activities</a></div>
+      <div><a href="#fun">For Fun</a></div>
     </div>
     <hr align="center" width="50%" />
 
@@ -495,6 +497,7 @@
         <br />
         <hr align="center" width="50%" />
         <div class="subheader">Leave a comment or ask a question!</div>
+        <p id="fun"></p>
         <div class="row">
           <div class="column" style="width: 100%;">
             <form action="/data" method="POST">
@@ -511,9 +514,15 @@
 
       <!-- Maps API-->
       <section>
-        <hr align="center" width="50%" />
-
+        <div class="subheader">Check out some special places!</div>
         <div id="map"></div>
+        <input id="address" type="text" />
+        <div id="address_return">
+          <a href="#fun" class="test" value="test">Champaign, IL</a>
+          <a href="#fun" class="test">New York, NY</a>
+          <a href="#fun" class="test">Urbana, IL</a>
+        </div>
+        <input id="submit" type="button" value="Geocode" />
       </section>
 
       <!-- Whitespace-->
