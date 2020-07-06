@@ -30,49 +30,68 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Servlet that returns comments that users input
+/** Servlet that returns comments that users input into webpage*/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  // Retrieves previously inputted comments from database
+  private static final String COMMENT_OBJ = "Comment";
+  private static final String NAME = "name";
+  private static final String TIMESTAMP = "timestamp";
+  private static final String MESSAGE = "message";
+
+  /**Retrieves previously inputted comments from database */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     PreparedQuery results =
-        datastore.prepare(new Query("Comment").addSort("timestamp", SortDirection.DESCENDING));
+        datastore.prepare(new Query(COMMENT_OBJ).addSort(TIMESTAMP, SortDirection.DESCENDING));
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      long id = entity.getKey().getId();
-      String name = (String) entity.getProperty("name");
-      String message = (String) entity.getProperty("message");
-      long timestamp = (long) entity.getProperty("timestamp");
-      comments.add(new Comment(id, name, timestamp, message));
+      comments.add(buildComment(entity));
     }
     response.setContentType("text/html;");
     response.getWriter().println(new Gson().toJson(comments));
   }
 
-  // Puts inputted comments into database and redirects result back to page
+  /**Puts inputted comments into database and redirects result back to page */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("name", getParameter(request, "name-input", "Anonymous"));
-    commentEntity.setProperty("message", getParameter(request, "text-input", /* defaultValue=*/""));
-    commentEntity.setProperty("timestamp", System.currentTimeMillis());
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
-    if (!((String) commentEntity.getProperty("message")).isEmpty()) {
-      datastore.put(commentEntity);
-    }
-
+    writeToDatastore(request);
     response.sendRedirect("/index.html");
   }
 
-  //@return the request parameter, or the default value if the parameter was not specified by the
-  // client
+  /**
+   * @return the request parameter, or the default value if the parameter was not specified by the
+   * client
+   */
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
     return (value == null || value.isEmpty()) ? defaultValue : value;
+  }
+
+  /**
+   * @param entity - Comment entity
+   * @return Comment object
+   */
+  private static Comment buildComment(Entity entity) {
+    long commentId = entity.getKey().getId();
+    String commentName = (String) entity.getProperty(NAME);
+    long commentTimestamp = (long) entity.getProperty(TIMESTAMP);
+    String commentMessage = (String) entity.getProperty(MESSAGE);
+    return new Comment(commentId, commentName, commentTimestamp, commentMessage);
+  }
+
+  /** Writes comments inputted into form into datastore*/
+  private void writeToDatastore(HttpServletRequest request) {
+    Entity commentEntity = new Entity(COMMENT_OBJ);
+    commentEntity.setProperty(NAME, getParameter(request, "name-input", "Anonymous"));
+    commentEntity.setProperty(MESSAGE, getParameter(request, "text-input", /* defaultValue=*/""));
+    commentEntity.setProperty(TIMESTAMP, System.currentTimeMillis());
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+    if (!((String) commentEntity.getProperty(MESSAGE)).isEmpty()) {
+      datastore.put(commentEntity);
+    }
   }
 }

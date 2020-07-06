@@ -85,12 +85,12 @@ async function getComment() {
   });
 }
 
-// Creates an table element containing text with name and date
+// Creates an table element for comments containing text with name and date
 function createTableElement(text) {
   const trElement = document.createElement('tr');
   const tdElementName = document.createElement('td');
-  tdElementName.innerHTML = text.text + ' -' + text.name + ' on ' +
-      new Date(text.timestamp).toDateString();
+  tdElementName.innerHTML = `${text.text} - ${text.name} on 
+    ${new Date(text.timestamp).toDateString()}`;
   trElement.appendChild(tdElementName);
   return trElement;
 }
