@@ -3,26 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yichen Yao</title>
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADFoK-nIAnOsAJfSOTC0I_0_lH68vFT-A"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="script.js"></script>
   </head>
-  <body onload="createMap(); getComment()">
+  <body>
     <!-- Header -->
     <div class="header"><p id="top">Yichen Yao</p></div>
 
     <!-- Nav bar -->
     <hr align="center" width="50%" />
     <div class="spread">
-      <div><a href="#about">About</a></div>
+      <div><a href="#top">About</a></div>
       <div><a href="#experience">Experience</a></div>
       <div><a href="#projects">Projects</a></div>
       <div><a href="#activities">Activities</a></div>
-      <div><a href="#fun">For Fun</a></div>
+      <div><a href="fun-features.html">For Fun</a></div>
     </div>
     <hr align="center" width="50%" />
 
@@ -450,86 +447,6 @@
             </div>
           </div>
         </div>
-      </section>
-
-
-      <!-- Maps API-->
-      <section>
-        <div class="subheader">Check out some places!</div>
-        <div class="row">
-          <div class="column">
-            <div id="map"></div>
-          </div>
-          <div class="column">
-            <div class="subheader" style="font-size: 16px;">
-              Click to look at some of my special places and press 'Go!' or type in a place of your own to explore.
-            </div>
-            <br />
-            <br />
-            <div class="about">
-              <div id="address_return">
-                <p>The town I grew up in: <a href="#fun">Urbana, IL</a></p>
-                <p>Where I go to college: <a href="#fun">Columbia University</a></p>
-                <p>Where I was supposed to work this summer: <a href="#fun">Google Sunnyvale</a></p>
-                <p>My most recent vacation: <a href="#fun">Nice, France</a></p>
-                <p>My favorite place in NYC: <a href="#fun">Washington Square Park, NYC</a></p>
-              </div>
-            </div>
-            <input id="address" type="text" />
-            <input id="submit" type="button" value="Go!" />
-          </div>
-        </div>
-        <hr align="center" width="50%" />
-      </section>
-
-      <!-- Comment Form-->
-      <section>
-        <br />
-        <hr align="center" width="50%" />
-        
-        <p id="fun"></p>
-        <div class="row">
-          <div class="column" >
-              <div class="subheader">Leave a comment or ask a question!</div>
-            <form action="/data" method="POST">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter name..."
-                name="name-input"
-                autocomplete="off"
-              />
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter comment..."
-                name="text-input"
-                autocomplete="off"
-              />
-              <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
-            </form>
-            <br />
-            <table id="comment-container"></table>
-          </div>
-        <!-- Charts API-->
-          <div class="column">
-                    
-        <div class="subheader">Vote for your favorite quarantine activity:</div>
-        <form action="/activity-data" method="POST">
-          <select name="activity">
-            <option value="TV">Watching TV</option>
-            <option value="Exercise">Playing Sports/Exercising</option>
-            <option value="Coding">Coding</option>
-            <option value="Reading">Reading</option>
-            <option value="Sleeping">Sleeping</option>
-            <option value="Eating">Eating</option>
-          </select>
-          <button>Submit</button>
-        </form>
-         <div id="chart-container"></div>
-          </div>
-        </div>
-        <hr align="center" width="50%" />
       </section>
 
       <!-- Whitespace-->

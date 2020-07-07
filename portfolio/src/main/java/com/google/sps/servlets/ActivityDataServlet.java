@@ -26,6 +26,6 @@ public class ActivityDataServlet extends HttpServlet {
     int currentVotes = activityVotes.containsKey(activity) ? activityVotes.get(activity) : 0;
     activityVotes.put(activity, currentVotes + 1);
 
-    response.sendRedirect("/index.html");
+    response.sendRedirect("/fun-features.html");
   }
 }
