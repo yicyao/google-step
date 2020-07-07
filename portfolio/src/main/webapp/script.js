@@ -13,7 +13,6 @@
 // limitations under the License.
 
 /* Creates Slideshow Carousel to go through my projects*/
-
 // Navigates to next slide
 function plusSlides(slideNum) {
   showSlides('arrow', (slideIndex += slideNum));
@@ -95,11 +94,13 @@ function createTableElement(text) {
   return trElement;
 }
 
+const COLUMBIA_LATITUDE = 40.807682;
+const COLUMBIA_LONGITUDE = -73.962508;
 // Creates a map and adds it to the page
 function createMap() {
   const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: {lat: 37.422, lng: -122.084}, zoom: 10});
+      {center: {lat: COLUMBIA_LATITUDE, lng: COLUMBIA_LONGITUDE}, zoom: 12});
   const geocoder = new google.maps.Geocoder();
   document.getElementById('submit').addEventListener('click', function() {
     geocodeAddress(geocoder, map);
