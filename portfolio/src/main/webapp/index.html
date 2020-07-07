@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yichen Yao</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADFoK-nIAnOsAJfSOTC0I_0_lH68vFT-A"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <script src="script.js"></script>
   </head>
-  <body onload="getComment()">
+  <body onload="createMap(); getComment()">
     <!-- Header -->
     <div class="header"><p id="top">Yichen Yao</p></div>
 
@@ -18,6 +20,7 @@
       <div><a href="#experience">Experience</a></div>
       <div><a href="#projects">Projects</a></div>
       <div><a href="#activities">Activities</a></div>
+      <div><a href="#fun">For Fun</a></div>
     </div>
     <hr align="center" width="50%" />
 
@@ -257,48 +260,6 @@
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="column">
-            <img src="images/columbia.png" width="150" height="150" />
-          </div>
-
-          <div class="column">
-            <div class="subheader">Columbia University</div>
-            <div class="subtext">Aug 2018-May 2022</div>
-            <hr align="center" width="80%" />
-            <div class="about">
-              Student at Columbia University School of Engineering and Applied Sciences studying computer science, with
-              a focus on Intelligent Systems
-            </div>
-            <div class="about">
-              <li>
-                Relevant Courses: Artificial Intelligence, Advanced Programming in C, Data Structures in Java, Computer
-                Science Theory
-              </li>
-            </div>
-          </div>
-
-          <div class="column">
-            <img src="images/uni.png" width="150" height="150" />
-          </div>
-
-          <div class="column">
-            <div class="subheader">University Laboratory High School</div>
-            <div class="subtext">Aug 2013-May 2018</div>
-            <hr align="center" width="80%" />
-            <div class="about">
-              Graduated
-              <a href="https://www.uni.illinois.edu/">
-                University of Illinois Laboratory High School
-              </a>
-              in 2018.
-            </div>
-            <div class="about">
-              <li>Awards: Best of Class, Science Student of the Year</li>
-            </div>
-          </div>
-        </div>
         <br />
         <br />
         <br />
@@ -489,21 +450,62 @@
         </div>
       </section>
 
+      <!-- Comment Form-->
       <section>
         <br />
-        <!-- Comment form -->
-
         <hr align="center" width="50%" />
         <div class="subheader">Leave a comment or ask a question!</div>
+        <p id="fun"></p>
         <div class="row">
           <div class="column" style="width: 100%;">
             <form action="/data" method="POST">
-              <input type="text" class="form-control" placeholder="Enter name..." name="name-input" />
-              <input type="text" class="form-control" placeholder="Enter comment..." name="text-input" />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter name..."
+                name="name-input"
+                autocomplete="off"
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter comment..."
+                name="text-input"
+                autocomplete="off"
+              />
               <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
             </form>
             <br />
             <table id="comment-container"></table>
+          </div>
+        </div>
+        <hr align="center" width="50%" />
+      </section>
+
+      <!-- Maps API-->
+      <section>
+        <div class="subheader">Check out some places!</div>
+        <div class="row">
+          <div class="column">
+            <div id="map"></div>
+          </div>
+          <div class="column">
+            <div class="subheader" style="font-size: 16px;">
+              Click to look at some of my special places and press 'Go!' or type in a place of your own to explore.
+            </div>
+            <br />
+            <br />
+            <div class="about">
+              <div id="address_return">
+                <p>The town I grew up in: <a href="#fun">Urbana, IL</a></p>
+                <p>Where I go to college: <a href="#fun">Columbia University</a></p>
+                <p>Where I was supposed to work this summer: <a href="#fun">Google Sunnyvale</a></p>
+                <p>My most recent vacation: <a href="#fun">Nice, France</a></p>
+                <p>My favorite place in NYC: <a href="#fun">Washington Square Park, NYC</a></p>
+              </div>
+            </div>
+            <input id="address" type="text" />
+            <input id="submit" type="button" value="Go!" />
           </div>
         </div>
         <hr align="center" width="50%" />

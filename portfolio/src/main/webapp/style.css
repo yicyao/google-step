@@ -41,6 +41,10 @@ form input {
   text-align: center;
 }
 
+input[type='button'] {
+  font-family: 'Open Sans';
+}
+
 .multiline {
   white-space: pre-wrap;
 }
@@ -95,6 +99,9 @@ form input {
   width: 50%;
 }
 
+/* .row img {
+    border-radius: 50%;
+} */
 /* Seperate column sections within rows*/
 .column {
   line-height: 100%;
@@ -216,4 +223,14 @@ form input {
   height: 50px;
   width: 100px;
   background-color: #555;
+}
+
+#map {
+  border: thin solid black;
+  height: 300px;
+  width: 300px;
+}
+
+#map img {
+  border-radius: 0 !important;
 }

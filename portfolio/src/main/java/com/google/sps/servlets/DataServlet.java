@@ -69,10 +69,7 @@ public class DataServlet extends HttpServlet {
     return (value == null || value.isEmpty()) ? defaultValue : value;
   }
 
-  /**
-   * @param entity - Comment entity
-   * @return Comment object
-   */
+  /** Builds comment*/
   private static Comment buildComment(Entity entity) {
     long commentId = entity.getKey().getId();
     String commentName = (String) entity.getProperty(NAME);
