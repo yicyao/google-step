@@ -452,37 +452,6 @@
         </div>
       </section>
 
-      <!-- Comment Form-->
-      <section>
-        <br />
-        <hr align="center" width="50%" />
-        <div class="subheader">Leave a comment or ask a question!</div>
-        <p id="fun"></p>
-        <div class="row">
-          <div class="column" style="width: 100%;">
-            <form action="/data" method="POST">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter name..."
-                name="name-input"
-                autocomplete="off"
-              />
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter comment..."
-                name="text-input"
-                autocomplete="off"
-              />
-              <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
-            </form>
-            <br />
-            <table id="comment-container"></table>
-          </div>
-        </div>
-        <hr align="center" width="50%" />
-      </section>
 
       <!-- Maps API-->
       <section>
@@ -513,9 +482,39 @@
         <hr align="center" width="50%" />
       </section>
 
+      <!-- Comment Form-->
       <section>
-        <div id="chart-container"></div>
-        <h2>Vote for your favorite quarantine activity:</h2>
+        <br />
+        <hr align="center" width="50%" />
+        
+        <p id="fun"></p>
+        <div class="row">
+          <div class="column" >
+              <div class="subheader">Leave a comment or ask a question!</div>
+            <form action="/data" method="POST">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter name..."
+                name="name-input"
+                autocomplete="off"
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter comment..."
+                name="text-input"
+                autocomplete="off"
+              />
+              <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
+            </form>
+            <br />
+            <table id="comment-container"></table>
+          </div>
+        <!-- Charts API-->
+          <div class="column">
+                    
+        <div class="subheader">Vote for your favorite quarantine activity:</div>
         <form action="/activity-data" method="POST">
           <select name="activity">
             <option value="TV">Watching TV</option>
@@ -527,6 +526,10 @@
           </select>
           <button>Submit</button>
         </form>
+         <div id="chart-container"></div>
+          </div>
+        </div>
+        <hr align="center" width="50%" />
       </section>
 
       <!-- Whitespace-->
