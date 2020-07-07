@@ -123,6 +123,30 @@ function geocodeAddress(geocoder, resultsMap) {
   });
 }
 
+/** Fetches activity data and uses it to create chart. */
+google.charts.load('current', {'packages': ['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+  fetch('/activity-data')
+      .then((response) => response.json())
+      .then((activityVotes) => {
+        const data = new google.visualization.DataTable();
+        data.addColumn('string', 'Activity');
+        data.addColumn('number', 'Votes');
+        Object.keys(activityVotes).forEach((activity) => {
+          data.addRow([activity, activityVotes[activity]]);
+        });
+        const options = {
+          'title': 'Favorite Activities',
+          'width': 400,
+          'height': 400,
+        };
+        const chart = new google.visualization.PieChart(
+            document.getElementById('chart-container'));
+        chart.draw(data, options);
+      });
+}
+
 // Fills out form using suggested locations
 $(document).ready(function() {
   $('#address_return a').click(function() {

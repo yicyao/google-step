@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yichen Yao</title>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADFoK-nIAnOsAJfSOTC0I_0_lH68vFT-A"></script>
     <link rel="stylesheet" href="style.css" />
@@ -509,6 +511,22 @@
           </div>
         </div>
         <hr align="center" width="50%" />
+      </section>
+
+      <section>
+        <div id="chart-container"></div>
+        <h2>Vote for your favorite quarantine activity:</h2>
+        <form action="/activity-data" method="POST">
+          <select name="activity">
+            <option value="TV">Watching TV</option>
+            <option value="Exercise">Playing Sports/Exercising</option>
+            <option value="Coding">Coding</option>
+            <option value="Reading">Reading</option>
+            <option value="Sleeping">Sleeping</option>
+            <option value="Eating">Eating</option>
+          </select>
+          <button>Submit</button>
+        </form>
       </section>
 
       <!-- Whitespace-->
