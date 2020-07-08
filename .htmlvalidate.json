@@ -14,6 +14,7 @@
     "element-permitted-content": "off", 
     "prefer-button": "off", 
     "attribute-allowed-values": "off", 
+    "wcag/h32": "off",
     "wcag/h37": "off"
   }
 }
