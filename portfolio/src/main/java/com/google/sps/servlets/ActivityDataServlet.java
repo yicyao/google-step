@@ -23,14 +23,36 @@ public class ActivityDataServlet extends HttpServlet {
   private static final String ACTIVITY_OBJ = "Activity";
   private static final String ACTIVITY = "activity";
   private static final String ACTIVITY_COUNT = "count";
-  
+  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-  // write javadoc
+  /* Retrieves user inputted chart data*/
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
     PreparedQuery results = datastore.prepare(new Query(ACTIVITY_OBJ));
+    Map<String, Long> chartData = getActivityResults(results);
+
+    response.setContentType("application/json");
+    response.getWriter().println(new Gson().toJson(chartData));
+  }
+
+  /** Takes single activity input and writes into database*/
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    writeToDatastore(request.getParameter(ACTIVITY));
+    response.sendRedirect("/fun-features.html");
+  }
+
+  /** Writes chart data to database */
+  private void writeToDatastore(String activity) {
+    Entity activityEntity = new Entity(ACTIVITY_OBJ);
+    activityEntity.setProperty(ACTIVITY, activity);
+    activityEntity.setProperty(ACTIVITY_COUNT, 1);
+
+    datastore.put(activityEntity);
+  }
+
+  /** Aggregates chart data */
+  private Map<String, Long> getActivityResults(PreparedQuery results) {
     Map<String, Long> activityVotes = new HashMap<>();
     for (Entity entity : results.asIterable()) {
       String activityName = (String) entity.getProperty(ACTIVITY);
@@ -42,24 +64,6 @@ public class ActivityDataServlet extends HttpServlet {
         activityVotes.put(activityName, count);
       }
     }
-
-    response.setContentType("application/json");
-    response.getWriter().println(new Gson().toJson(activityVotes));
-  }
-
-  /** Takes single activity input and writes into database*/
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    writeToDatastore(request.getParameter(ACTIVITY));
-    response.sendRedirect("/fun-features.html");
-  }
-
-  private void writeToDatastore(String activity) {
-    Entity activityEntity = new Entity(ACTIVITY_OBJ);
-    activityEntity.setProperty(ACTIVITY, activity);
-    activityEntity.setProperty(ACTIVITY_COUNT, 1);
-    
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(activityEntity);
+    return activityVotes;
   }
 }
