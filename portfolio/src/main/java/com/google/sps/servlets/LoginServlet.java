@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+   private static final String REDIRECT_URL = "/fun-features.html";
+
   /**Retrieves user login status and returns appropriate form */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -27,15 +29,14 @@ public class LoginServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
       loginString.append("<p>Hello " + userService.getCurrentUser().getEmail() + "!</p>");
-      String urlToRedirectToAfterUserLogsOut = "/fun-features.html";
-      String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+      String logoutUrl = userService.createLogoutURL(REDIRECT_URL);
       loginString.append("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
     } else {
-      String urlToRedirectToAfterUserLogsIn = "/fun-features.html";
-      String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
+      String loginUrl = userService.createLoginURL(REDIRECT_URL);
       loginString.append("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
     }
     response.setContentType("text/html;");
     response.getWriter().println(new Gson().toJson(loginString.toString()));
   }
 }
+
