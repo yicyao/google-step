@@ -23,7 +23,7 @@ public class ActivityDataServlet extends HttpServlet {
   private static final String ACTIVITY_OBJ = "Activity";
   private static final String ACTIVITY = "activity";
   private static final String ACTIVITY_COUNT = "count";
-  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private static final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   /* Retrieves user inputted chart data*/
   @Override
