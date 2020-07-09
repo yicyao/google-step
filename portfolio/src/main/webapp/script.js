@@ -133,8 +133,8 @@ function drawChart() {
         const data = new google.visualization.DataTable();
         data.addColumn('string', 'Activity');
         data.addColumn('number', 'Votes');
-        Object.keys(activityVotes).forEach((activity) => {
-          data.addRow([activity, activityVotes[activity]]);
+        Object.keys(activityVotes).forEach((activityName) => {
+          data.addRow([activityName, activityVotes[activityName]]);
         });
         const options = {
           'title': 'Favorite Activities',
