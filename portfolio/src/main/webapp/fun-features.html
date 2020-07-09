@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body onload="createMap(); getComment()">
+  <body onload="createMap(); getComment(); checkLogin()">
     <!-- Header -->
     <div class="header"><p id="top">Yichen Yao</p></div>
     <!-- Nav bar -->
@@ -21,6 +21,12 @@
 
     <!-- Scroll Start -->
     <article class="scroller">
+      <section>
+        <br />
+        <h1>LOGIN HERE</h1>
+        <div id="login-link"></div>
+        <br />
+      </section>
       <!-- Maps API-->
       <section>
         <div class="subheader">Check out some places!</div>

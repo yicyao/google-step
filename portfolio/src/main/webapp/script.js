@@ -147,6 +147,16 @@ function drawChart() {
       });
 }
 
+// Fetches html for user based on login status
+async function checkLogin() {
+  fetch('/login').then((response) => response.json()).then((loginString) => {
+    const loginLink = document.getElementById('login-link');
+    loginLink.innerHTML = loginString;
+
+    // TO DO: modify whether form is open based on whether logged in or not
+  });
+}
+
 // Fills out form using suggested locations
 $(document).ready(function() {
   $('#address_return a').click(function() {
