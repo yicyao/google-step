@@ -220,9 +220,10 @@ input[type='button'] {
 }
 
 .rectangle {
-  height: 50px;
-  width: 100px;
-  background-color: #555;
+  background-color: white;
+  border: 1px solid gray;
+  height: 75px;
+  width: 300px;
 }
 
 #map {

@@ -160,9 +160,13 @@ async function checkLogin() {
           createLinkElement(loginString.link, 'Log out here.'));
     } else {
       loginLink.appendChild(createLinkElement(
-          loginString.link, 'Log in here to write comments!'));
-      commentForm = document.getElementById('commentForm');
+          loginString.link, 'Log in here to interact with the page!'));
+      const commentForm = document.getElementById('commentForm');
       commentForm.style.display = 'none';
+      const mapForm = document.getElementById('map-form');
+      mapForm.style.display = 'none';
+      const chartForm = document.getElementById('chart-form');
+      chartForm.style.display = 'none';
     }
   });
 }
