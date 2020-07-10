@@ -10,4 +10,8 @@ public final class LoginInfo {
     this.loggedIn = loggedIn;
     this.link = link;
   }
+
+  public Boolean getLoggedIn() {
+    return loggedIn;
+  }
 }

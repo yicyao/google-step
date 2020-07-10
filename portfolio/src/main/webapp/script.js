@@ -147,14 +147,23 @@ function drawChart() {
       });
 }
 
-// Fetches html for user based on login status
+// Hides forms based on user login status
+
+// TO DO: hide all forms
 async function checkLogin() {
   fetch('/login').then((response) => response.json()).then((loginString) => {
     const loginLink = document.getElementById('login-link');
     loginLink.innerHTML = '';
-    loginLink.appendChild(createLinkElement(loginString.link, 'log'));
 
-    // TO DO: modify whether form is open based on whether logged in or not
+    if (loginString.loggedIn) {
+      loginLink.appendChild(
+          createLinkElement(loginString.link, 'Log out here.'));
+    } else {
+      loginLink.appendChild(createLinkElement(
+          loginString.link, 'Log in here to write comments!'));
+      commentForm = document.getElementById('commentForm');
+      commentForm.style.display = 'none';
+    }
   });
 }
 

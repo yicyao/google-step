@@ -21,11 +21,14 @@
 
     <!-- Scroll Start -->
     <article class="scroller">
+      <!-- Authentication API-->
       <section>
         <br />
-        <h1>LOGIN HERE</h1>
-        <div id="login-link"></div>
+        <div class="column" style="font-size: 24px; margin: auto; text-align: center;">
+          <div id="login-link"></div>
+        </div>
         <br />
+        <hr align="center" width="50%" />
       </section>
       <!-- Maps API-->
       <section>
@@ -78,23 +81,25 @@
         <div class="row">
           <div class="column">
             <div class="subheader">Leave a comment or ask a question!</div>
-            <form action="/data" method="POST">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter name..."
-                name="name-input"
-                autocomplete="off"
-              />
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter comment..."
-                name="text-input"
-                autocomplete="off"
-              />
-              <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
-            </form>
+            <div id="commentForm">
+              <form action="/data" method="POST">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter name..."
+                  name="name-input"
+                  autocomplete="off"
+                />
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter comment..."
+                  name="text-input"
+                  autocomplete="off"
+                />
+                <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
+              </form>
+            </div>
             <br />
             <table id="comment-container"></table>
           </div>
