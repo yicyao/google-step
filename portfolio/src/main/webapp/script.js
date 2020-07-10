@@ -151,10 +151,19 @@ function drawChart() {
 async function checkLogin() {
   fetch('/login').then((response) => response.json()).then((loginString) => {
     const loginLink = document.getElementById('login-link');
-    loginLink.innerHTML = loginString;
+    loginLink.innerHTML = '';
+    loginLink.appendChild(createLinkElement(loginString.link, 'log'));
 
     // TO DO: modify whether form is open based on whether logged in or not
   });
+}
+
+// Creates link element for log in / out
+function createLinkElement(link, text) {
+  const linkElement = document.createElement('a');
+  linkElement.setAttribute('href', link);
+  linkElement.innerText = text;
+  return linkElement;
 }
 
 // Fills out form using suggested locations
