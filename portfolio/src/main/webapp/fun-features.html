@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body onload="createMap(); getComment(); checkLogin()">
+  <body onload="createMap(); checkLogin()">
     <!-- Header -->
     <div class="header"><p id="top">Yichen Yao</p></div>
     <!-- Nav bar -->
@@ -24,7 +24,7 @@
       <!-- Authentication API-->
       <section>
         <br />
-        <div class="row" style="font-size: 24px; justify-content: center; margin: auto; text-align: center;">
+        <div class="row" style="font-size: 20px; justify-content: center; margin: auto; text-align: center;">
           <div class="rectangle">
             <div id="login-link"></div>
           </div>
@@ -38,16 +38,12 @@
         <p id="fun"></p>
         <div class="row">
           <div class="column">
+            <div id="commentForm-hide">
+              <div class="subheader">Log in to comment and see comments.</div>
+            </div>
             <div id="commentForm">
               <div class="subheader">Leave a comment or ask a question!</div>
               <form action="/data" method="POST">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter name..."
-                  name="name-input"
-                  autocomplete="off"
-                />
                 <input
                   type="text"
                   class="form-control"
@@ -57,14 +53,15 @@
                 />
                 <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
               </form>
+              <br />
+              <table id="comment-container"></table>
             </div>
-            <br />
-            <table id="comment-container"></table>
           </div>
           <!-- Charts API-->
           <div class="column">
+            <div class="subheader">Favorite quarantine activities</div>
             <div id="chart-form">
-              <div class="subheader">Vote for your favorite quarantine activity:</div>
+              <div class="subheader">Vote below!</div>
               <form action="/activity-data" method="POST">
                 <select name="activity">
                   <option value="TV">Watching TV</option>

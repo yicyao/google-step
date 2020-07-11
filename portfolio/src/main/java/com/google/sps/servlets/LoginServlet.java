@@ -26,14 +26,11 @@ public class LoginServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
-    // TO DO: add email field to LoginInfo obj
-    // String userEmail = userService.getCurrentUser().getEmail();
     boolean loggedIn = userService.isUserLoggedIn();
     LoginInfo login = loggedIn
         ? new LoginInfo(loggedIn, userService.getCurrentUser().getEmail(),
             userService.createLogoutURL(REDIRECT_URL))
         : new LoginInfo(loggedIn, "Anonymous", userService.createLoginURL(REDIRECT_URL));
-
     response.setContentType("text/html;");
     response.getWriter().println(new Gson().toJson(login));
   }
