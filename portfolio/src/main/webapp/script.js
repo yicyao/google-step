@@ -147,6 +147,25 @@ function drawChart() {
       });
 }
 
+// Fetches html for user based on login status
+async function checkLogin() {
+  fetch('/login').then((response) => response.json()).then((loginString) => {
+    const loginLink = document.getElementById('login-link');
+    loginLink.innerHTML = '';
+    loginLink.appendChild(createLinkElement(loginString.link, 'log'));
+
+    // TO DO: modify whether form is open based on whether logged in or not
+  });
+}
+
+// Creates link element for log in / out
+function createLinkElement(link, text) {
+  const linkElement = document.createElement('a');
+  linkElement.setAttribute('href', link);
+  linkElement.innerText = text;
+  return linkElement;
+}
+
 // Fills out form using suggested locations
 $(document).ready(function() {
   $('#address_return a').click(function() {
