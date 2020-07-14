@@ -48,7 +48,7 @@ public final class FindMeetingQuery {
 
   // merges intervals of overlapping events
   private List<TimeRange> mergeIntervals(List<TimeRange> intervals) {
-    if (intervals == null || intervals.size() <= 1) {
+    if (intervals.isEmpty() || intervals.size() <= 1) {
       return intervals;
     }
 
