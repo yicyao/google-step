@@ -27,17 +27,64 @@ public final class FindMeetingQuery {
    * @return List of all possible meeting times
    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    List<TimeRange> busyTimes = getBusyTimes(events, request);
-    Collections.sort(busyTimes, TimeRange.ORDER_BY_START);
-    busyTimes = mergeIntervals(busyTimes);
-    return getAvailableTimes(busyTimes, request.getDuration());
+
+    List<TimeRange> mandatoryBusyTimes = getBusyTimes(events, request, "mandatory");
+    //can maybe move down, dont need to sort now
+    Collections.sort(mandatoryBusyTimes, TimeRange.ORDER_BY_START);
+    mandatoryBusyTimes = mergeIntervals(mandatoryBusyTimes);
+    //mandatoryResult = getAvailableTimes(mandatoryBusyTimes, request.getDuration());
+
+    if (!request.getOptionalAttendees().isEmpty()) {
+    System.out.println("-------");  
+    System.out.println("mandatory");
+    for (TimeRange time: mandatoryBusyTimes) {
+        System.out.println(time.toString());
+    }
+
+    List<TimeRange> optionalBusyTimes = getBusyTimes(events, request, "optional");
+    System.out.println("optional");
+    for (TimeRange time: optionalBusyTimes) {
+        System.out.println(time.toString());
+    }
+    List<TimeRange> combinedTimes = new ArrayList<>(optionalBusyTimes);
+
+	combinedTimes.addAll(mandatoryBusyTimes);
+    Collections.sort(combinedTimes, TimeRange.ORDER_BY_START);
+    //System.out.println(optionalBusyTimes.getClass());
+    //System.out.println(mandatoryBusyTimes.getClass());
+
+
+    combinedTimes = mergeIntervals(combinedTimes);
+    System.out.println("combined");
+    for (TimeRange time: combinedTimes) {
+        System.out.println(time.toString());
+    }
+    
+    List<TimeRange> result =  getAvailableTimes(combinedTimes, request.getDuration());
+    System.out.println("result");
+        for (TimeRange time: result) {
+        System.out.println(time.toString());
+        }
+    System.out.println("-------");    
+    return result;
+    }
+
+    
+    return getAvailableTimes(mandatoryBusyTimes, request.getDuration());
+    
   }
 
   // gets busy times for all request attendees
-  private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request) {
+  private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request, String requestType) {
+      Collection<String> attendeeType;
+    if (requestType.equals("mandatory")) {
+        attendeeType = request.getAttendees();
+    } else {
+        attendeeType= request.getOptionalAttendees();
+    }
     List<TimeRange> busyTimes = new ArrayList<>();
     for (Event event : events) {
-      for (String attendees : request.getAttendees()) {
+      for (String attendees : attendeeType) {
         if (event.getAttendees().contains(attendees)) {
           busyTimes.add(event.getWhen());
         }
