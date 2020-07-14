@@ -34,8 +34,8 @@ public final class FindMeetingQuery {
   }
 
   // gets busy times for all request attendees
-  private ArrayList<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request) {
-    ArrayList<TimeRange> busyTimes = new ArrayList<>();
+  private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request) {
+    List<TimeRange> busyTimes = new ArrayList<>();
     for (Event event : events) {
       for (String attendees : request.getAttendees()) {
         if (event.getAttendees().contains(attendees)) {
@@ -59,7 +59,7 @@ public final class FindMeetingQuery {
       // if events overlap, merge
       if (currentInterval.start() <= startInterval.end()) {
         startInterval = TimeRange.fromStartEnd(startInterval.start(),
-            Math.max(currentInterval.end(), startInterval.end()), /* inclusive=*/false);
+            Math.max(currentInterval.end(), startInterval.end()), /*inclusive=*/false);
       } else {
         result.add(startInterval);
         startInterval = currentInterval;
@@ -78,7 +78,7 @@ public final class FindMeetingQuery {
     for (TimeRange time : busyTimes) {
       if (time.start() - currentStart >= duration) {
         availableTimes.add(
-            TimeRange.fromStartEnd(currentStart, time.start(), /* inclusive=*/false));
+            TimeRange.fromStartEnd(currentStart, time.start(), /*inclusive=*/false));
       }
       currentStart = time.end();
     }
@@ -86,7 +86,7 @@ public final class FindMeetingQuery {
     // finds gap of requested duration time between last meeting and end of day
     if (TimeRange.END_OF_DAY - currentStart >= duration) {
       availableTimes.add(
-          TimeRange.fromStartEnd(currentStart, TimeRange.END_OF_DAY, /* inclusive=*/true));
+          TimeRange.fromStartEnd(currentStart, TimeRange.END_OF_DAY, /*inclusive=*/true));
     }
     return availableTimes;
   }
