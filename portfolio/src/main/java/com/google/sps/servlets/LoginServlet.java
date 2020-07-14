@@ -27,9 +27,10 @@ public class LoginServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
     boolean loggedIn = userService.isUserLoggedIn();
-    LoginInfo login = loggedIn ? new LoginInfo(loggedIn, userService.createLogoutURL(REDIRECT_URL))
-                               : new LoginInfo(loggedIn, userService.createLoginURL(REDIRECT_URL));
-
+    LoginInfo login = loggedIn
+        ? new LoginInfo(loggedIn, userService.getCurrentUser().getEmail(),
+            userService.createLogoutURL(REDIRECT_URL))
+        : new LoginInfo(loggedIn, "Anonymous", userService.createLoginURL(REDIRECT_URL));
     response.setContentType("text/html;");
     response.getWriter().println(new Gson().toJson(login));
   }

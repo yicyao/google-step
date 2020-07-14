@@ -74,21 +74,23 @@ function showSlides(type, slideNum) {
 }
 
 // Fetches comments from /data and displays
-async function getComment() {
+// @param email: email of user who is logged in
+function getComment(email) {
   fetch('/data').then((response) => response.json()).then((greetings) => {
     const greetingList = document.getElementById('comment-container');
     greetingList.innerHTML = '';
     for (const message of greetings) {
-      greetingList.appendChild(createTableElement(message));
+      greetingList.appendChild(createTableElement(email, message));
     }
   });
 }
 
-// Creates an table element for comments containing text with name and date
-function createTableElement(text) {
+// Creates an table element for comments containing text with email of user and
+// date
+function createTableElement(email, text) {
   const trElement = document.createElement('tr');
   const tdElementName = document.createElement('td');
-  tdElementName.innerHTML = `${text.text} - ${text.name} on 
+  tdElementName.innerHTML = `${text.text} - ${email} on 
     ${new Date(text.timestamp).toDateString()}`;
   trElement.appendChild(tdElementName);
   return trElement;
@@ -147,14 +149,31 @@ function drawChart() {
       });
 }
 
-// Fetches html for user based on login status
+/**  Hides all forms if user not logged in */
 async function checkLogin() {
   fetch('/login').then((response) => response.json()).then((loginString) => {
+    const loginEmail = loginString.email;
     const loginLink = document.getElementById('login-link');
     loginLink.innerHTML = '';
-    loginLink.appendChild(createLinkElement(loginString.link, 'log'));
 
-    // TO DO: modify whether form is open based on whether logged in or not
+    if (loginString.loggedIn) {
+      loginLink.appendChild(createLinkElement(
+          loginString.link, `You are logged in as ${loginString.email}. `));
+      loginLink.appendChild(
+          createLinkElement(loginString.link, 'Log out here.'));
+
+      // get comments written by logged in user
+      getComment(loginEmail);
+    } else {
+      loginLink.appendChild(createLinkElement(
+          loginString.link, 'Log in here to interact with the page!'));
+      const commentForm = document.getElementById('commentForm');
+      commentForm.style.display = 'none';
+      const mapForm = document.getElementById('map-form');
+      mapForm.style.display = 'none';
+      const chartForm = document.getElementById('chart-form');
+      chartForm.style.display = 'none';
+    }
   });
 }
 

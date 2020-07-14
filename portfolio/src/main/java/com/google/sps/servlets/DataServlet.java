@@ -24,6 +24,8 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.sps.data.Comment;
+import com.google.sps.data.LoginInfo;
+import com.google.sps.servlets.LoginServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -37,7 +39,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
   private static final String COMMENT_OBJ = "Comment";
-  private static final String NAME = "name";
   private static final String TIMESTAMP = "timestamp";
   private static final String MESSAGE = "message";
 
@@ -75,16 +76,14 @@ public class DataServlet extends HttpServlet {
   /** Builds comment*/
   private static Comment buildComment(Entity entity) {
     long commentId = entity.getKey().getId();
-    String commentName = (String) entity.getProperty(NAME);
     long commentTimestamp = (long) entity.getProperty(TIMESTAMP);
     String commentMessage = (String) entity.getProperty(MESSAGE);
-    return new Comment(commentId, commentName, commentTimestamp, commentMessage);
+    return new Comment(commentId, commentTimestamp, commentMessage);
   }
 
   /** Writes comments inputted into form into datastore*/
   private void writeToDatastore(HttpServletRequest request) {
     Entity commentEntity = new Entity(COMMENT_OBJ);
-    commentEntity.setProperty(NAME, getParameter(request, "name-input", "Anonymous"));
     commentEntity.setProperty(MESSAGE, getParameter(request, "text-input", /* defaultValue=*/""));
     commentEntity.setProperty(TIMESTAMP, System.currentTimeMillis());
 

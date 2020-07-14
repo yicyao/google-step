@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
-  <body onload="createMap(); getComment(); checkLogin()">
+  <body onload="createMap(); checkLogin()">
     <!-- Header -->
     <div class="header"><p id="top">Yichen Yao</p></div>
     <!-- Nav bar -->
@@ -21,11 +21,63 @@
 
     <!-- Scroll Start -->
     <article class="scroller">
+      <!-- Authentication API-->
       <section>
         <br />
-        <h1>LOGIN HERE</h1>
-        <div id="login-link"></div>
+        <div class="row" style="font-size: 20px; justify-content: center; margin: auto; text-align: center;">
+          <div class="rectangle">
+            <div id="login-link"></div>
+          </div>
+        </div>
         <br />
+      </section>
+      <!-- Comment Form-->
+      <section>
+        <br />
+        <hr align="center" width="50%" />
+        <p id="fun"></p>
+        <div class="row">
+          <div class="column">
+            <div id="commentForm-hide">
+              <div class="subheader">Log in to comment and see comments.</div>
+            </div>
+            <div id="commentForm">
+              <div class="subheader">Leave a comment or ask a question!</div>
+              <form action="/data" method="POST">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter comment..."
+                  name="text-input"
+                  autocomplete="off"
+                />
+                <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
+              </form>
+              <br />
+              <table id="comment-container"></table>
+            </div>
+          </div>
+          <!-- Charts API-->
+          <div class="column">
+            <div class="subheader">Favorite quarantine activities</div>
+            <div id="chart-form">
+              <div class="subheader">Vote below!</div>
+              <form action="/activity-data" method="POST">
+                <select name="activity">
+                  <option value="TV">Watching TV</option>
+                  <option value="Exercise">Playing Sports/Exercising</option>
+                  <option value="Coding">Coding</option>
+                  <option value="Reading">Reading</option>
+                  <option value="Sleeping">Sleeping</option>
+                  <option value="Eating">Eating</option>
+                </select>
+                <button>Submit</button>
+              </form>
+            </div>
+            <div id="chart-container"></div>
+          </div>
+        </div>
+        <hr align="center" width="50%" />
       </section>
       <!-- Maps API-->
       <section>
@@ -64,57 +116,14 @@
                 </p>
               </div>
             </div>
-            <input id="address" type="text" placeholder="Type to search a place!" />
-            <input id="submit" type="button" value="Go!" />
+            <div id="map-form">
+              <input id="address" type="text" placeholder="Type to search a place!" />
+              <input id="submit" type="button" value="Go!" />
+            </div>
           </div>
         </div>
-      </section>
-
-      <!-- Comment Form-->
-      <section>
         <br />
-        <hr align="center" width="50%" />
-        <p id="fun"></p>
-        <div class="row">
-          <div class="column">
-            <div class="subheader">Leave a comment or ask a question!</div>
-            <form action="/data" method="POST">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter name..."
-                name="name-input"
-                autocomplete="off"
-              />
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter comment..."
-                name="text-input"
-                autocomplete="off"
-              />
-              <input type="submit" placeholder="Enter comment..." onclick="getComment()" />
-            </form>
-            <br />
-            <table id="comment-container"></table>
-          </div>
-          <!-- Charts API-->
-          <div class="column">
-            <div class="subheader">Vote for your favorite quarantine activity:</div>
-            <form action="/activity-data" method="POST">
-              <select name="activity">
-                <option value="TV">Watching TV</option>
-                <option value="Exercise">Playing Sports/Exercising</option>
-                <option value="Coding">Coding</option>
-                <option value="Reading">Reading</option>
-                <option value="Sleeping">Sleeping</option>
-                <option value="Eating">Eating</option>
-              </select>
-              <button>Submit</button>
-            </form>
-            <div id="chart-container"></div>
-          </div>
-        </div>
+        <br />
         <hr align="center" width="50%" />
       </section>
 
