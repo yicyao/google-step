@@ -30,19 +30,23 @@ public final class FindMeetingQuery {
     List<TimeRange> mandatoryBusyTimes = getBusyTimes(events, request, "mandatory", Collections.emptyList());
     List<TimeRange> mandatoryResult = getAvailableTimes(mandatoryBusyTimes, request.getDuration());
 
-    // If there are optional attendees, account for them in schedule
-    if (!request.getOptionalAttendees().isEmpty()) {
-      List<TimeRange> optionalBusyTimes = getBusyTimes(events, request, "optional", mandatoryBusyTimes);
-      List<TimeRange> result = getAvailableTimes(optionalBusyTimes, request.getDuration());
- 
-      // If optional attendee scheduling conflicts with mandatory scheduling, schedule
-      // only for mandatory attendees 
-      if(result.isEmpty() && !request.getAttendees().isEmpty()) {
+    // If no optional attendees, account for mandatory attendees only
+    if(request.getOptionalAttendees().isEmpty()) {
         return mandatoryResult;
-      }  
-      return result;
     }
-    return mandatoryResult;
+
+    // If there are optional attendees, account for them in schedule
+    List<TimeRange> optionalBusyTimes = getBusyTimes(events, request, "optional", mandatoryBusyTimes);
+    List<TimeRange> result = getAvailableTimes(optionalBusyTimes, request.getDuration());
+ 
+    // If optional attendee scheduling conflicts with mandatory scheduling, schedule
+    // only for mandatory attendees 
+    if(result.isEmpty() && !request.getAttendees().isEmpty()) {
+      return mandatoryResult;
+    }  
+
+    // Return scheduling for optional and mandatory attendees
+    return result;
   }
 
   // Gets busy times for all request attendees depending on if there are optional attendees
