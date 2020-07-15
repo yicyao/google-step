@@ -27,7 +27,7 @@ public final class FindMeetingQuery {
    * @return List of all possible meeting times
    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    List<TimeRange> mandatoryBusyTimes = getBusyTimes(events, request, "mandatory", Collections.emptyList());
+    List<TimeRange> mandatoryBusyTimes = getBusyTimes(events, request, /*isMandatory=*/true, Collections.emptyList());
     List<TimeRange> mandatoryResult = getAvailableTimes(mandatoryBusyTimes, request.getDuration());
 
     // If no optional attendees, account for mandatory attendees only
@@ -36,7 +36,7 @@ public final class FindMeetingQuery {
     }
 
     // If there are optional attendees, account for them in schedule
-    List<TimeRange> optionalBusyTimes = getBusyTimes(events, request, "optional", mandatoryBusyTimes);
+    List<TimeRange> optionalBusyTimes = getBusyTimes(events, request, /*isMandatory=*/false, mandatoryBusyTimes);
     List<TimeRange> result = getAvailableTimes(optionalBusyTimes, request.getDuration());
  
     // If optional attendee scheduling conflicts with mandatory scheduling, schedule
@@ -50,9 +50,9 @@ public final class FindMeetingQuery {
   }
 
   // Gets busy times for all request attendees depending on if there are optional attendees
-  private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request, String requestType, List<TimeRange> toAppend) {
+  private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request, boolean isMandatory, List<TimeRange> toAppend) {
       Collection<String> attendeeType;
-    if (requestType.equals("mandatory")) {
+    if (isMandatory) {
         attendeeType = request.getAttendees();
     } else {
         attendeeType= request.getOptionalAttendees();
