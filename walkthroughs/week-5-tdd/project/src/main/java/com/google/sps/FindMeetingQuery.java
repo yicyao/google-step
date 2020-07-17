@@ -51,12 +51,8 @@ public final class FindMeetingQuery {
 
   // Gets busy times for all request attendees depending on if there are optional attendees
   private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request, boolean isMandatory, List<TimeRange> toAppend) {
-      Collection<String> attendeeType;
-    if (isMandatory) {
-        attendeeType = request.getAttendees();
-    } else {
-        attendeeType= request.getOptionalAttendees();
-    }
+    Collection<String> attendeeType = isMandatory ? request.getAttendees: request.getOptionalAttendees;
+    
     List<TimeRange> busyTimes = new ArrayList<>();
     for (Event event : events) {
       for (String attendees : attendeeType) {
