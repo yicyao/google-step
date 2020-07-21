@@ -19,7 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-/** Finds possible meeting times for a request for all mandatory participants */
+/** Finds possible meeting times for a request for all mandatory participants and potentially optional participants*/
 public final class FindMeetingQuery {
   /**
    * @param events List of all known events with times and participants
@@ -27,23 +27,45 @@ public final class FindMeetingQuery {
    * @return List of all possible meeting times
    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    List<TimeRange> busyTimes = getBusyTimes(events, request);
-    Collections.sort(busyTimes, TimeRange.ORDER_BY_START);
-    busyTimes = mergeIntervals(busyTimes);
-    return getAvailableTimes(busyTimes, request.getDuration());
+    List<TimeRange> mandatoryBusyTimes = getBusyTimes(events, request, /*isMandatory=*/true, Collections.emptyList());
+    List<TimeRange> mandatoryResult = getAvailableTimes(mandatoryBusyTimes, request.getDuration());
+
+    // If no optional attendees, account for mandatory attendees only
+    if(request.getOptionalAttendees().isEmpty()) {
+        return mandatoryResult;
+    }
+
+    // If there are optional attendees, account for them in schedule
+    List<TimeRange> optionalBusyTimes = getBusyTimes(events, request, /*isMandatory=*/false, mandatoryBusyTimes);
+    List<TimeRange> result = getAvailableTimes(optionalBusyTimes, request.getDuration());
+ 
+    // If optional attendee scheduling conflicts with mandatory scheduling, schedule
+    // only for mandatory attendees 
+    if(result.isEmpty() && !request.getAttendees().isEmpty()) {
+      return mandatoryResult;
+    }  
+
+    // Return scheduling for optional and mandatory attendees
+    return result;
   }
 
-  // gets busy times for all request attendees
-  private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request) {
+  // Gets busy times for all request attendees depending on if there are optional attendees
+  private List<TimeRange> getBusyTimes(Collection<Event> events, MeetingRequest request, boolean isMandatory, List<TimeRange> toAppend) {
+    Collection<String> attendeeType = isMandatory ? request.getAttendees: request.getOptionalAttendees;
+    
     List<TimeRange> busyTimes = new ArrayList<>();
     for (Event event : events) {
-      for (String attendees : request.getAttendees()) {
+      for (String attendees : attendeeType) {
         if (event.getAttendees().contains(attendees)) {
           busyTimes.add(event.getWhen());
         }
       }
     }
-    return busyTimes;
+    if (!toAppend.isEmpty()) {
+        busyTimes.addAll(toAppend);
+    }
+    Collections.sort(busyTimes, TimeRange.ORDER_BY_START);
+    return mergeIntervals(busyTimes);
   }
 
   // merges intervals of overlapping events
@@ -69,11 +91,11 @@ public final class FindMeetingQuery {
     return result;
   }
 
-  // gets available times of correct duration
+  // Gets available times of correct duration
   private List<TimeRange> getAvailableTimes(List<TimeRange> busyTimes, long duration) {
     List<TimeRange> availableTimes = new ArrayList<>();
 
-    // finds gaps of requested duration time
+    // Finds gaps of requested duration time
     int currentStart = TimeRange.START_OF_DAY;
     for (TimeRange time : busyTimes) {
       if (time.start() - currentStart >= duration) {
@@ -83,7 +105,7 @@ public final class FindMeetingQuery {
       currentStart = time.end();
     }
 
-    // finds gap of requested duration time between last meeting and end of day
+    // Finds gap of requested duration time between last meeting and end of day
     if (TimeRange.END_OF_DAY - currentStart >= duration) {
       availableTimes.add(
           TimeRange.fromStartEnd(currentStart, TimeRange.END_OF_DAY, /*inclusive=*/true));
